@@ -144,6 +144,36 @@ location = do
             putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.\n")
    else putStrLn ("Correct! The "++s++"...the perfect place to kill someone!\n")
 
+wordsWhen :: (Char -> Bool) -> String -> [String]
+wordsWhen p s =  case dropWhile p s of
+                  "" -> []
+                  s' -> w : wordsWhen p s''
+                        where (w, s'') = break p s'
+
+promptGuess :: IO ()
+promptGuess = do
+   putStrLn "Are you ready to solve the mystery?"
+   putStrLn "Enter 'yes' to guess, any other key to start over:"
+   s <- getLine
+   if (s == "yes")
+      then
+         do guess
+   else
+      do prompt
+
+guess :: IO ()
+guess = do
+   putStrLn "Who killed the student, what did (s)he use, and where did it happen?"
+   putStrLn "Format: professor,class,location: (no spaces)"
+   s <- getLine
+   if (wordsWhen (==',') s)!!0 == worldToString(genWorld)!!0 &&
+      (wordsWhen (==',') s)!!1 == worldToString(genWorld)!!1 &&
+      (wordsWhen (==',') s)!!2 == worldToString(genWorld)!!2
+      then putStrLn ("CONGRATULATIONS! You saved Pomona's CS department!\n")
+   else
+      do putStrLn ("Not quite...\n")
+         prompt
+
 --thin possible worlds
 prompt :: IO ()
 prompt = do
@@ -151,8 +181,8 @@ prompt = do
    professor
    weapon
    location
-   prompt
- 
+   promptGuess
+
 
 main = do
    storyLine
