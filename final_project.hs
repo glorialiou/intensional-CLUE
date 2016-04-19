@@ -78,31 +78,52 @@ storyLine = do
    putStrLn ("The downstairs lab?")
    putStrLn ("Edmunds 101?\n")
 
---thin possible worlds
-prompt :: IO ()
-prompt = do
+professor :: IO ()
+professor = do
    putStrLn ("Who killed the student?\nEnter 'Bruce', 'Chen', 'Greenberg', 'Kauchak', or 'Wu':")
    s <- getLine
-   if s /= worldToString(genWorld)!!0
+   if s /= "Bruce" && s /= "Chen" && s /= "Greenberg" && s /= "Kauchak" && s /= "Wu"
       then
-         do putStrLn (""++s++" is innocent! How dare you suspect them!")
+         do putStrLn ("Huh? That's not a Pomona CS professor! Try again...")
+            professor
+   else if s /= worldToString(genWorld)!!0
+      then putStrLn (""++s++" is innocent! How dare you suspect them!")
    else putStrLn ("Correct! "++s++" was the cold-blooded killer.")
 
+weapon :: IO ()
+weapon = do
    putStrLn "Which class did (s)he use?\nEnter 'CS52', 'CS62', 'CS81', 'Systems', or 'Algs':"
    s <- getLine
-   if s /= worldToString(genWorld)!!1
+   if s /= "CS52" && s /= "CS62" && s /= "CS81" && s /= "Systems" && s /= "Algs"
       then
-         do putStrLn ("Please, "++s++" is easy! That class never killed anybody.")
-   else putStrLn ("Correct! "++s++" was the murder weapon... cruel and unusual torture indeed!")
+         do putStrLn ("Possibly...but that's not one of options! Try again...")
+            weapon
+   else if s /= worldToString(genWorld)!!1
+      then putStrLn ("Please, "++s++" is easy! That class never killed anybody.")
+   else putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual torture indeed!")
 
+location :: IO ()
+location = do
    putStrLn "Where did (s)he kill the student?\nEnter 'Beanbag', 'Hall', 'Office', 'Lab', or 'Edmunds101':"
-   s <- getLine 
-   if s /= worldToString(genWorld)!!2
+   s <- getLine
+   if s /= "Beanbag" && s /= "Hall" && s /= "Office" && s /= "Lab" && s /= "Edmunds101"
+      then
+         do putStrLn ("Interesting choice, but not one of the locations. Try again...")
+            location
+   else if s /= worldToString(genWorld)!!2
       then
          do putStrLn ("The "++s++"? Nothing ever happens there.")
             putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.")
-            prompt 
-   else putStrLn ("Correct! The "++s++"... the perfect place to kill someone!")
+   else putStrLn ("Correct! The "++s++"...the perfect place to kill someone!")
+
+--thin possible worlds
+prompt :: IO ()
+prompt = do
+   professor
+   weapon
+   location
+   prompt
+ 
 
 main = do
    storyLine
