@@ -43,40 +43,68 @@ worldToString (World {p = prof, c = clas, l = loca}) = [show prof, show clas, sh
 
 --genPossibleWorlds
 
---how do we print this one line at a time?
 storyLine :: IO ()
 storyLine = do
    putStrLn ("Welcome to Pomona's CS department!")
+   s <- getLine
    putStrLn ("We're excited for you to join us!")
-   putStrLn ("... well ... sort of ... we have way too many majors.")
+   s <- getLine
+   putStrLn ("...well...sort of...we have way too many majors.")
+   s <- getLine
    putStrLn ("Late nights, white board scribbles, flowing tears...")
+   s <- getLine
    putStrLn ("nothing out of the ordinary.")
+   s <- getLine
    putStrLn ("But last night, something out of the ordinary happened.")
+   s <- getLine
    putStrLn ("A student was killed. The body was found right here, in the middle of Edmunds.\n")
+   s <- getLine
 
    putStrLn ("Who killed the student?")
+   s <- getLine
    putStrLn ("Was it...")
+   s <- getLine
    putStrLn ("Professor Bruce?")
+   s <- getLine
    putStrLn ("Professor Chen?")
+   s <- getLine
    putStrLn ("Professor Greenberg?")
+   s <- getLine
    putStrLn ("Professor Kauchak?")
+   s <- getLine
    putStrLn ("Professor Wu?\n")
+   s <- getLine
 
    putStrLn ("Which class did (s)he use?")
+   s <- getLine
    putStrLn ("Was it...")
+   s <- getLine
    putStrLn ("CS52?")
+   s <- getLine
    putStrLn ("CS62?")
+   s <- getLine
    putStrLn ("CS81?")
+   s <- getLine
    putStrLn ("Systems?")
+   s <- getLine
    putStrLn ("Algorithms?\n")
+   s <- getLine
 
    putStrLn ("Where did (s)he kill the student?")
+   s <- getLine
    putStrLn ("Was it...")
+   s <- getLine
    putStrLn ("The beanbag in the lounge?")
+   s <- getLine
    putStrLn ("The second floor hallway of Edmunds?")
+   s <- getLine
    putStrLn ("Lori's office?")
+   s <- getLine
    putStrLn ("The downstairs lab?")
+   s <- getLine
    putStrLn ("Edmunds 101?\n")
+   s <- getLine
+   putStrLn ("Help us solve the mystery!\n\n")
 
 professor :: IO ()
 professor = do
@@ -84,11 +112,11 @@ professor = do
    s <- getLine
    if s /= "Bruce" && s /= "Chen" && s /= "Greenberg" && s /= "Kauchak" && s /= "Wu"
       then
-         do putStrLn ("Huh? That's not a Pomona CS professor! Try again...")
+         do putStrLn ("Huh? That's not a Pomona CS professor! Try again...\n")
             professor
    else if s /= worldToString(genWorld)!!0
-      then putStrLn (""++s++" is innocent! How dare you suspect them!")
-   else putStrLn ("Correct! "++s++" was the cold-blooded killer.")
+      then putStrLn (""++s++" is innocent! How dare you suspect them!\n")
+   else putStrLn ("Correct! "++s++" was the cold-blooded killer.\n")
 
 weapon :: IO ()
 weapon = do
@@ -96,11 +124,11 @@ weapon = do
    s <- getLine
    if s /= "CS52" && s /= "CS62" && s /= "CS81" && s /= "Systems" && s /= "Algs"
       then
-         do putStrLn ("Possibly...but that's not one of options! Try again...")
+         do putStrLn ("Possibly...but that's not one of options! Try again...\n")
             weapon
    else if s /= worldToString(genWorld)!!1
-      then putStrLn ("Please, "++s++" is easy! That class never killed anybody.")
-   else putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual torture indeed!")
+      then putStrLn ("Please, "++s++" is easy! That class never killed anybody.\n")
+   else putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual torture indeed!\n")
 
 location :: IO ()
 location = do
@@ -108,17 +136,18 @@ location = do
    s <- getLine
    if s /= "Beanbag" && s /= "Hall" && s /= "Office" && s /= "Lab" && s /= "Edmunds101"
       then
-         do putStrLn ("Interesting choice, but not one of the locations. Try again...")
+         do putStrLn ("Interesting choice, but not one of the locations. Try again...\n")
             location
    else if s /= worldToString(genWorld)!!2
       then
          do putStrLn ("The "++s++"? Nothing ever happens there.")
-            putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.")
-   else putStrLn ("Correct! The "++s++"...the perfect place to kill someone!")
+            putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.\n")
+   else putStrLn ("Correct! The "++s++"...the perfect place to kill someone!\n")
 
 --thin possible worlds
 prompt :: IO ()
 prompt = do
+   s <- getLine
    professor
    weapon
    location
