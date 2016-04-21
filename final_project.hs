@@ -1,9 +1,10 @@
---Melissa Grueter
+---Melissa Grueter
 --Gloria Liou
 
 import Data.Word
 import Data.IORef
 import System.Random
+import Data.Time.Clock.POSIX
 
 data Clue = Professor Professor | Class Class | Location Location deriving Show
 data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
@@ -14,6 +15,13 @@ data World = World {p :: Professor, c :: Class, l :: Location} deriving Show
 randomNumbers :: Int -> [Int]
 randomNumbers seed = take 1 . randomRs (1, 5) . mkStdGen $ seed
 
+random3 :: Int -> [Int]
+random3 i = let g = (mkStdGen i)
+                (n1, g1) = next g
+                (n2, g2) = next g1
+                (n3, g3) = next g2
+            in [n1,n2,n3]
+            
 --make seed random
 genProf = case (randomNumbers 1) of
          [1] -> Bruce
