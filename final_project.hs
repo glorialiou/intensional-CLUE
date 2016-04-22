@@ -1,16 +1,67 @@
----Melissa Grueter
+--Melissa Grueter
 --Gloria Liou
+module CLUE where 
 
 import Data.Word
 import Data.IORef
 import System.Random
 import Data.Time.Clock.POSIX
+import EAI
+import FSynF
+import Model
+import Model2
+import TCOM
 
-data Clue = Professor Professor | Class Class | Location Location deriving Show
-data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
-data Class = CS52 | CS62 | CS81 | Systems | Algs deriving Show
-data Location = Beanbag | Hall | Office | Lab | Edmunds101 deriving Show
-data World = World {p :: Professor, c :: Class, l :: Location} deriving Show
+--data Clue = Professor Professor | Class Class | Location Location deriving Show
+--data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
+--data Class = CS52 | CS62 | CS81 | Systems | Algs deriving Show
+--data Location = Beanbag | Hall | Office | Lab | Classroom deriving Show
+--data CorrectWorld = World {p :: Professor, c :: Class, l :: Location} deriving Show
+
+--remainingworlds should be the set of worlds 
+remainingWorlds = worlds
+correctWorld = W47
+-- rand =  get a random number 1-125 
+
+--pick a world based on a number input
+--genWorld 1 = W1
+--genWorld 2 = W2
+-- ...
+
+--correct world = world chosen using random number
+--correctWorld = genWorld rand
+
+--WE ARE GONNA HAVE TO MAKE ALL THE LOCATIONS PROPER NOUNS FOR THIS TO WORK - CAN'T == LIST2ONEPLACEPRED
+--evaluate guesses using intensional world stuff and a world
+evalGuess "Bruce" world = ((iBruce world) == killer)
+evalGuess "Chen" world = ((iChen world) == killer)
+evalGuess "Greenberg" world = ((iGreenberg world) == killer)
+evalGuess "Kauchak" world = ((iKauchak world) == killer)
+evalGuess "Wu" world = ((iWu world) == killer)
+evalGuess "CS52" world = ((iCS52 world) == weapon)
+evalGuess "CS62" world = ((iCS62 world) == weapon)
+evalGuess "CS81" world = ((iCS81 world) == weapon)
+evalGuess "Systems" world = ((iSystems world) == weapon)
+evalGuess "Algs" world = ((iAlgs world) == weapon)
+evalGuess "Beanbag" world = ((iBeanbag world) == crimescene)
+evalGuess "Hall" world = ((iHall world) == crimescene)
+evalGuess "Office" world = ((iOffice world) == crimescene)
+evalGuess "Lab" world = ((iLab world) == crimescene)
+evalGuess "Classroom" world = ((iClassroom world) == crimescene)
+
+--thins the set of worlds in the case of an incorrect guess
+thinWorldsIncorrect guess [] = []
+thinWorldsIncorrect guess (w:ws) =
+                    if evalGuess guess w
+                       then thinWorldsIncorrect guess ws
+                    else (w:(thinWorldsIncorrect guess ws)) 
+
+--thins the set of worlds in the case of a correct guess 
+thinWorldsCorrect guess [] = []
+thinWorldsCorrect guess (w:ws) =
+                  if evalGuess guess w
+                     then (w:(thinWorldsCorrect guess ws))
+                  else thinWorldsCorrect guess ws 
 
 randomNumbers :: Int -> [Int]
 randomNumbers seed = take 1 . randomRs (1, 5) . mkStdGen $ seed
@@ -42,12 +93,14 @@ genLocation = case (randomNumbers 1) of
          [2] -> Hall
          [3] -> Office
          [4] -> Lab
-         [5] -> Edmunds101
+         [5] -> Classroom
 
-genWorld = World {p = genProf, c = genClass, l = genLocation}
+--genWorld = World {p = genProf, c = genClass, l = genLocation}
 
-worldToString :: World -> [String]
-worldToString (World {p = prof, c = clas, l = loca}) = [show prof, show clas, show loca]
+--worldToString :: CorrectWorld -> [String]
+--worldToString (World {p = prof, c = clas, l = loca}) = [show prof, show clas, show loca]
+--We should end up picking a world from the set of possible worlds, i.e. W109
+
 
 --genPossibleWorlds
 
@@ -110,47 +163,59 @@ storyLine = do
    s <- getLine
    putStrLn ("The downstairs lab?")
    s <- getLine
-   putStrLn ("Edmunds 101?\n")
+   putStrLn ("A classroom?\n")
    s <- getLine
    putStrLn ("Help us solve the mystery!\n\n")
 
-professor :: IO ()
-professor = do
+guessProfessor :: IO ()
+guessProfessor = do
    putStrLn ("Who killed the student?\nEnter 'Bruce', 'Chen', 'Greenberg', 'Kauchak', or 'Wu':")
    s <- getLine
    if s /= "Bruce" && s /= "Chen" && s /= "Greenberg" && s /= "Kauchak" && s /= "Wu"
       then
          do putStrLn ("Huh? That's not a Pomona CS professor! Try again...\n")
-            professor
-   else if s /= worldToString(genWorld)!!0
-      then putStrLn (""++s++" is innocent! How dare you suspect them!\n")
-   else putStrLn ("Correct! "++s++" was the cold-blooded killer.\n")
-
-weapon :: IO ()
-weapon = do
+            guessProfessor
+   else if evalGuess s correctWorld --WE SHOULD UPDATE STUFF SO WE CAN SAY if "Bruce is the killer" 
+      then putStrLn ("Correct! "++s++" was the cold-blooded killer.\n")
+           --had to use x here because was having problem setting directly... ?
+        --   x = thinWorldsCorrect s remainingWorlds
+          -- remainingWorlds = x
+   else putStrLn (""++s++" is innocent! How dare you suspect them!\n")
+        -- x = thinWorldsIncorrect s remainingWorlds
+         -- remainingWorlds = x
+guessWeapon :: IO ()
+guessWeapon = do
    putStrLn "Which class did (s)he use?\nEnter 'CS52', 'CS62', 'CS81', 'Systems', or 'Algs':"
    s <- getLine
    if s /= "CS52" && s /= "CS62" && s /= "CS81" && s /= "Systems" && s /= "Algs"
       then
          do putStrLn ("Possibly...but that's not one of options! Try again...\n")
-            weapon
-   else if s /= worldToString(genWorld)!!1
-      then putStrLn ("Please, "++s++" is easy! That class never killed anybody.\n")
-   else putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual torture indeed!\n")
+            guessWeapon
+   else if evalGuess s correctWorld
+      then putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual punishment indeed!\n")
+        --   x = thinWorldsCorrect s remainingWorlds
+          -- remainingWorlds = x
+   else putStrLn ("Please, "++s++" is easy! That class never killed anybody.\n")
+      -- x = thinWorldsIncorrect s remainingWorlds
+      -- remainingWorlds = x
 
-location :: IO ()
-location = do
-   putStrLn "Where did (s)he kill the student?\nEnter 'Beanbag', 'Hall', 'Office', 'Lab', or 'Edmunds101':"
+guessLocation :: IO ()
+guessLocation = do
+   putStrLn "Where did (s)he kill the student?\nEnter 'Beanbag', 'Hall', 'Office', 'Lab', or 'Classroom':"
    s <- getLine
-   if s /= "Beanbag" && s /= "Hall" && s /= "Office" && s /= "Lab" && s /= "Edmunds101"
+   if s /= "Beanbag" && s /= "Hall" && s /= "Office" && s /= "Lab" && s /= "Classroom"
       then
          do putStrLn ("Interesting choice, but not one of the locations. Try again...\n")
-            location
-   else if s /= worldToString(genWorld)!!2
-      then
-         do putStrLn ("The "++s++"? Nothing ever happens there.")
-            putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.\n")
-   else putStrLn ("Correct! The "++s++"...the perfect place to kill someone!\n")
+            guessLocation
+   else if evalGuess s correctWorld
+      then putStrLn ("Correct! The "++s++"...the perfect place to kill someone!\n")
+           --x = thinWorldsCorrect s remainingWorlds
+           --remainingWorlds = x         
+   else
+      do putStrLn ("The "++s++"? Nothing ever happens there.")
+         putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.\n")
+           -- x = thinWorldsIncorrect s remainingWorlds
+           -- remainingWorlds = x
 
 wordsWhen :: (Char -> Bool) -> String -> [String]
 wordsWhen p s =  case dropWhile p s of
@@ -174,21 +239,24 @@ guess = do
    putStrLn "Who killed the student, what did (s)he use, and where did it happen?"
    putStrLn "Format: professor,class,location: (no spaces)"
    s <- getLine
-   if (wordsWhen (==',') s)!!0 == worldToString(genWorld)!!0 &&
-      (wordsWhen (==',') s)!!1 == worldToString(genWorld)!!1 &&
-      (wordsWhen (==',') s)!!2 == worldToString(genWorld)!!2
+   if evalGuess ((wordsWhen (==',') s)!!0) correctWorld &&
+      evalGuess ((wordsWhen (==',') s)!!1) correctWorld &&
+      evalGuess ((wordsWhen (==',') s)!!2) correctWorld
       then putStrLn ("CONGRATULATIONS! You saved Pomona's CS department!\n")
+      --remainingWorlds = correctWorld
    else
       do putStrLn ("Not quite...\n")
+         -- thin worlds using thinWorldsIncorrect for each of the guesses 
          prompt
 
 --thin possible worlds
 prompt :: IO ()
 prompt = do
+   -- I THINK WE'RE GOING TO HAVE TO MAKE EACH RETURN THE SET OF REMAINING WORLDS TO PASS AROUND
    s <- getLine
-   professor
-   weapon
-   location
+   guessProfessor
+   guessWeapon
+   guessLocation
    promptGuess
 
 
