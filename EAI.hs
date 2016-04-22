@@ -3,20 +3,25 @@ import FSynF
 import Model
 import Model2
 import TCOM
+--import CLUE
 
-data World = W1 | W2 | W3 | W4 | W5 | W6 | W7 | W8 | W9 | W10
-    W11 | W12 | W13 | W14 | W15 | W16 | W17 | W18 | W19 | W20
-    W21 | W22 | W23 | W24 | W25 | W26 | W27 | W28 | W29 | W30
-    W31 | W32 | W33 | W34 | W35 | W36 | W37 | W38 | W39 | W40
-    W41 | W42 | W43 | W44 | W45 | W46 | W47 | W48 | W49 | W50
-    W51 | W52 | W53 | W54 | W55 | W56 | W57 | W58 | W59 | W60
-    W61 | W62 | W63 | W64 | W65 | W66 | W67 | W68 | W69 | W70
-    W71 | W72 | W73 | W74 | W75 | W76 | W77 | W78 | W79 | W80
-    W81 | W82 | W83 | W84 | W85 | W86 | W87 | W88 | W89 | W90
-    W91 | W92 | W93 | W94 | W95 | W96 | W97 | W98 | W99 | W100
-    W101 | W102 | W103 | W104 | W105 | W106 | W107 | W108 | W109 | W110
-    W111 | W112 | W113 | W114 | W115 | W116 | W117 | W118 | W119 | W120
-    W121 | W122 | W123 | W124 | W125 deriving (Eq,Show)
+--data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
+--data Class = CS52 | CS62 | CS81 | Systems | Algs deriving Show
+--data Location = Beanbag | Hall | Office | Lab | Edmunds101 deriving Show
+
+data World = W1 | W2 | W3 | W4 | W5 | W6 | W7 | W8 | W9 | W10 |
+     W11 | W12 | W13 | W14 | W15 | W16 | W17 | W18 | W19 | W20 |
+     W21 | W22 | W23 | W24 | W25 | W26 | W27 | W28 | W29 | W30 |
+     W31 | W32 | W33 | W34 | W35 | W36 | W37 | W38 | W39 | W40 |
+     W41 | W42 | W43 | W44 | W45 | W46 | W47 | W48 | W49 | W50 |
+     W51 | W52 | W53 | W54 | W55 | W56 | W57 | W58 | W59 | W60 |
+     W61 | W62 | W63 | W64 | W65 | W66 | W67 | W68 | W69 | W70 |
+     W71 | W72 | W73 | W74 | W75 | W76 | W77 | W78 | W79 | W80 | 
+     W81 | W82 | W83 | W84 | W85 | W86 | W87 | W88 | W89 | W90 |
+     W91 | W92 | W93 | W94 | W95 | W96 | W97 | W98 | W99 | W100 |
+     W101 | W102 | W103 | W104 | W105 | W106 | W107 | W108 | W109 | W110 |
+     W111 | W112 | W113 | W114 | W115 | W116 | W117 | W118 | W119 | W120 |
+     W121 | W122 | W123 | W124 | W125 deriving (Eq,Show,Ord)
 
 --We will need to thin these out
 worlds :: [World]
@@ -62,7 +67,7 @@ iBruce W22 = killer
 iBruce W23 = killer
 iBruce W24 = killer
 iBruce W25 = killer
-iBruce _ = professor
+iBruce _ = bruce
 
 --Prof Chen
 iChen :: IEntity
@@ -91,7 +96,7 @@ iChen W47 = killer
 iChen W48 = killer
 iChen W49 = killer
 iChen W50 = killer
-iChen _ = professor
+iChen _ = chen
 
 --Greenberg
 iGreenberg :: IEntity
@@ -120,7 +125,7 @@ iGreenberg W72 = killer
 iGreenberg W73 = killer
 iGreenberg W74 = killer
 iGreenberg W75 = killer
-iGreenberg _ = professor
+iGreenberg _ = greenberg
 
 --Kauchak
 iKauchak :: IEntity
@@ -149,7 +154,7 @@ iKauchak W97 = killer
 iKauchak W98 = killer
 iKauchak W99 = killer
 iKauchak W100 = killer
-iKauchak _ = professor
+iKauchak _ = kauchak
 
 --Wu
 iWu :: IEntity
@@ -178,7 +183,7 @@ iWu W122 = killer
 iWu W123 = killer
 iWu W124 = killer
 iWu W125 = killer
-iWu _ = professor
+iWu _ = wu
 
 -- -- CLASSES -- --
 --CS 52
@@ -208,7 +213,7 @@ iCS52 W22 = weapon
 iCS52 W23 = weapon
 iCS52 W24 = weapon
 iCS52 W25 = weapon
-iCS52 _ = course
+iCS52 _ = cs52
 
 --CS 62
 iCS62 :: IEntity
@@ -237,7 +242,7 @@ iCS62 W47 = weapon
 iCS62 W48 = weapon
 iCS62 W49 = weapon
 iCS62 W50 = weapon
-iCS62 _ = course
+iCS62 _ = cs62
 
 --CS 81
 iCS81 :: IEntity
@@ -266,7 +271,7 @@ iCS81 W72 = weapon
 iCS81 W73 = weapon
 iCS81 W74 = weapon
 iCS81 W75 = weapon
-iCS81 _ = course
+iCS81 _ = cs81
 
 --Systems
 iSystems :: IEntity
@@ -295,7 +300,7 @@ iSystems W97 = weapon
 iSystems W98 = weapon
 iSystems W99 = weapon
 iSystems W100 = weapon
-iSystems _ = course
+iSystems _ = systems
 
 --Algs
 iAlgs :: IEntity
@@ -324,154 +329,156 @@ iAlgs W122 = weapon
 iAlgs W123 = weapon
 iAlgs W124 = weapon
 iAlgs W125 = weapon
-iAlgs _ = course
+iAlgs _ = algs
 
 -- -- LOCATIONS -- --
 
 --Beanbag
-iBeanbag :: IEntity
-iBeanbag W1 = crimeScene 
-iBeanbag W2 = crimeScene
-iBeanbag W3 = crimeScene
-iBeanbag W4 = crimeScene
-iBeanbag W5 = crimeScene
-iBeanbag W6 = crimeScene
-iBeanbag W7 = crimeScene
-iBeanbag W8 = crimeScene
-iBeanbag W9 = crimeScene
-iBeanbag W10 = crimeScene
-iBeanbag W11 = crimeScene
-iBeanbag W12 = crimeScene
-iBeanbag W13 = crimeScene
-iBeanbag W14 = crimeScene
-iBeanbag W15 = crimeScene
-iBeanbag W16 = crimeScene
-iBeanbag W17 = crimeScene
-iBeanbag W18 = crimeScene
-iBeanbag W19 = crimeScene
-iBeanbag W20 = crimeScene
-iBeanbag W21 = crimeScene
-iBeanbag W22 = crimeScene
-iBeanbag W23 = crimeScene
-iBeanbag W24 = crimeScene
-iBeanbag W25 = crimeScene
-iBeanbag _ = location
+--iBeanbag ::  World -> Entity -> Bool
+iBeanbag W1 = crimescene 
+iBeanbag W2 = crimescene
+iBeanbag W3 = crimescene
+iBeanbag W4 = crimescene
+iBeanbag W5 = crimescene
+iBeanbag W6 = crimescene
+iBeanbag W7 = crimescene
+iBeanbag W8 = crimescene
+iBeanbag W9 = crimescene
+iBeanbag W10 = crimescene
+iBeanbag W11 = crimescene
+iBeanbag W12 = crimescene
+iBeanbag W13 = crimescene
+iBeanbag W14 = crimescene
+iBeanbag W15 = crimescene
+iBeanbag W16 = crimescene
+iBeanbag W17 = crimescene
+iBeanbag W18 = crimescene
+iBeanbag W19 = crimescene
+iBeanbag W20 = crimescene
+iBeanbag W21 = crimescene
+iBeanbag W22 = crimescene
+iBeanbag W23 = crimescene
+iBeanbag W24 = crimescene
+iBeanbag W25 = crimescene
+iBeanbag _ = location -- beanbag
 
 --Hall
-iHall :: IEntity
-iHall W26 = crimeScene
-iHall W27 = crimeScene
-iHall W28 = crimeScene
-iHall W29 = crimeScene
-iHall W30 = crimeScene
-iHall W31 = crimeScene
-iHall W32 = crimeScene
-iHall W33 = crimeScene
-iHall W34 = crimeScene
-iHall W35 = crimeScene
-iHall W36 = crimeScene
-iHall W37 = crimeScene
-iHall W38 = crimeScene
-iHall W39 = crimeScene
-iHall W40 = crimeScene
-iHall W41 = crimeScene
-iHall W42 = crimeScene
-iHall W43 = crimeScene
-iHall W44 = crimeScene
-iHall W45 = crimeScene
-iHall W46 = crimeScene
-iHall W47 = crimeScene
-iHall W48 = crimeScene
-iHall W49 = crimeScene
-iHall W50 = crimeScene
-iHall _ = location
+--iHall :: IEntity
+iHall W26 = crimescene
+iHall W27 = crimescene
+iHall W28 = crimescene
+iHall W29 = crimescene
+iHall W30 = crimescene
+iHall W31 = crimescene
+iHall W32 = crimescene
+iHall W33 = crimescene
+iHall W34 = crimescene
+iHall W35 = crimescene
+iHall W36 = crimescene
+iHall W37 = crimescene
+iHall W38 = crimescene
+iHall W39 = crimescene
+iHall W40 = crimescene
+iHall W41 = crimescene
+iHall W42 = crimescene
+iHall W43 = crimescene
+iHall W44 = crimescene
+iHall W45 = crimescene
+iHall W46 = crimescene
+iHall W47 = crimescene
+iHall W48 = crimescene
+iHall W49 = crimescene
+iHall W50 = crimescene
+iHall _ = location -- hall
 
 --Office
-iOffice :: IEntity
-iOffice W51 = crimeScene
-iOffice W52 = crimeScene
-iOffice W53 = crimeScene
-iOffice W54 = crimeScene
-iOffice W55 = crimeScene
-iOffice W56 = crimeScene
-iOffice W57 = crimeScene
-iOffice W58 = crimeScene
-iOffice W59 = crimeScene
-iOffice W60 = crimeScene
-iOffice W61 = crimeScene
-iOffice W62 = crimeScene
-iOffice W63 = crimeScene
-iOffice W64 = crimeScene
-iOffice W65 = crimeScene
-iOffice W66 = crimeScene
-iOffice W67 = crimeScene
-iOffice W68 = crimeScene
-iOffice W69 = crimeScene
-iOffice W70 = crimeScene
-iOffice W71 = crimeScene
-iOffice W72 = crimeScene
-iOffice W73 = crimeScene
-iOffice W74 = crimeScene
-iOffice W75 = crimeScene
-iOffice _ = location
+--iOffice :: IEntity
+iOffice W51 = crimescene
+iOffice W52 = crimescene
+iOffice W53 = crimescene
+iOffice W54 = crimescene
+iOffice W55 = crimescene
+iOffice W56 = crimescene
+iOffice W57 = crimescene
+iOffice W58 = crimescene
+iOffice W59 = crimescene
+iOffice W60 = crimescene
+iOffice W61 = crimescene
+iOffice W62 = crimescene
+iOffice W63 = crimescene
+iOffice W64 = crimescene
+iOffice W65 = crimescene
+iOffice W66 = crimescene
+iOffice W67 = crimescene
+iOffice W68 = crimescene
+iOffice W69 = crimescene
+iOffice W70 = crimescene
+iOffice W71 = crimescene
+iOffice W72 = crimescene
+iOffice W73 = crimescene
+iOffice W74 = crimescene
+iOffice W75 = crimescene
+iOffice _ = location -- office
 
 --Lab
-iLab :: IEntity
-iLab W76 = crimeScene
-iLab W77 = crimeScene
-iLab W78 = crimeScene
-iLab W79 = crimeScene
-iLab W80 = crimeScene
-iLab W81 = crimeScene
-iLab W82 = crimeScene
-iLab W83 = crimeScene
-iLab W84 = crimeScene
-iLab W85 = crimeScene
-iLab W86 = crimeScene
-iLab W87 = crimeScene
-iLab W88 = crimeScene
-iLab W89 = crimeScene
-iLab W90 = crimeScene
-iLab W91 = crimeScene
-iLab W92 = crimeScene
-iLab W93 = crimeScene
-iLab W94 = crimeScene
-iLab W95 = crimeScene
-iLab W96 = crimeScene
-iLab W97 = crimeScene
-iLab W98 = crimeScene
-iLab W99 = crimeScene
-iLab W100 = crimeScene
-iLab _ = location
+--iLab :: IEntity
+iLab W76 = crimescene
+iLab W77 = crimescene
+iLab W78 = crimescene
+iLab W79 = crimescene
+iLab W80 = crimescene
+iLab W81 = crimescene
+iLab W82 = crimescene
+iLab W83 = crimescene
+iLab W84 = crimescene
+iLab W85 = crimescene
+iLab W86 = crimescene
+iLab W87 = crimescene
+iLab W88 = crimescene
+iLab W89 = crimescene
+iLab W90 = crimescene
+iLab W91 = crimescene
+iLab W92 = crimescene
+iLab W93 = crimescene
+iLab W94 = crimescene
+iLab W95 = crimescene
+iLab W96 = crimescene
+iLab W97 = crimescene
+iLab W98 = crimescene
+iLab W99 = crimescene
+iLab W100 = crimescene
+iLab _ = location --lab
 
---Edmunds 101
-iEdmunds101 :: IEntity
-iEdmunds101 W101 = crimeScene
-iEdmunds101 W102 = crimeScene
-iEdmunds101 W103 = crimeScene
-iEdmunds101 W104 = crimeScene
-iEdmunds101 W105 = crimeScene
-iEdmunds101 W106 = crimeScene
-iEdmunds101 W107 = crimeScene
-iEdmunds101 W108 = crimeScene
-iEdmunds101 W109 = crimeScene
-iEdmunds101 W110 = crimeScene
-iEdmunds101 W111 = crimeScene
-iEdmunds101 W112 = crimeScene
-iEdmunds101 W113 = crimeScene
-iEdmunds101 W114 = crimeScene
-iEdmunds101 W115 = crimeScene
-iEdmunds101 W116 = crimeScene
-iEdmunds101 W117 = crimeScene
-iEdmunds101 W118 = crimeScene
-iEdmunds101 W119 = crimeScene
-iEdmunds101 W120 = crimeScene
-iEdmunds101 W121 = crimeScene
-iEdmunds101 W122 = crimeScene
-iEdmunds101 W123 = crimeScene
-iEdmunds101 W124 = crimeScene
-iEdmunds101 W125 = crimeScene
-iEdmunds101 _ = location
+--Classroom
+--iClassroom :: IEntity
+iClassroom W101 = crimescene
+iClassroom W102 = crimescene
+iClassroom W103 = crimescene
+iClassroom W104 = crimescene
+iClassroom W105 = crimescene
+iClassroom W106 = crimescene
+iClassroom W107 = crimescene
+iClassroom W108 = crimescene
+iClassroom W109 = crimescene
+iClassroom W110 = crimescene
+iClassroom W111 = crimescene
+iClassroom W112 = crimescene
+iClassroom W113 = crimescene
+iClassroom W114 = crimescene
+iClassroom W115 = crimescene
+iClassroom W116 = crimescene
+iClassroom W117 = crimescene
+iClassroom W118 = crimescene
+iClassroom W119 = crimescene
+iClassroom W120 = crimescene
+iClassroom W121 = crimescene
+iClassroom W122 = crimescene
+iClassroom W123 = crimescene
+iClassroom W124 = crimescene
+iClassroom W125 = crimescene
+iClassroom _ = location -- classroom
+
+--WEIRD ISSUE WHERE ALL THE LOCATIONS ARE CNs instead of NPs AND CRIMESCENE EVALED DIFF FROM KILLER
 
 --------------------------- OLD CODE FOR REFERENCE -----------------------------
 
@@ -511,7 +518,22 @@ iSent (Sent np vp) = iNP np (iVP vp)
 
 iNP :: NP -> (IEntity -> IBool) -> IBool
 
+
 iNP SnowWhite = \ p -> p iSnowWhite
+
+--Profs
+iNP Bruce = \ p -> p iBruce
+iNP Chen = \ p -> p iChen
+iNP Greenberg = \ p -> p iGreenberg
+iNP Kauchak = \ p -> p iKauchak
+iNP Wu = \ p -> p iWu
+
+--Classes
+iNP CS52 = \ p -> p iCS52
+iNP CS62 = \ p -> p iCS62
+iNP CS81 = \ p -> p iCS81
+iNP Systems = \ p -> p iSystems
+iNP Algs = \ p -> p iAlgs
 
 iNP Everyone  = \ p i -> all (\x -> p (\j -> x) i) 
       (filter (\y -> iPerson i y) entities)
@@ -537,7 +559,14 @@ iVP (VP3 attitude to inf) = iAV attitude (iINF inf)
 
 iCN :: CN -> IEntity -> IBool 
 iCN Girl = \ x i -> iGirl i (x i) 
-iCN Princess = \ x i -> iPrincess i (x i) 
+iCN Princess = \ x i -> iPrincess i (x i)
+
+--OTHER LOCATIONS
+iCN Beanbag =  \ x i -> iBeanbag i (x i) 
+iCN Hall =  \ x i -> iHall i (x i) 
+iCN Office = \ x i -> iOffice i (x i)
+iCN Lab = \ x i -> iLab i (x i)
+iCN Classroom = \x i -> iClassroom i (x i) 
 
 iRCN (RCN3 adj cn) = iADJ adj (iCN cn)
 
