@@ -30,18 +30,17 @@ type Feedback = [Answer]
 
 -- Data types for different parts of speech *** ADDED FOR CLUE ***
 data Sent = Sent NP VP deriving Show
-data NP   = SnowWhite  | Alice  | Dorothy | Goldilocks 
+data NP   = SnowWhite  | Alice  | Dorothy  | Goldilocks 
           | LittleMook | Atreyu | Everyone | Someone 
           | Bruce      | Chen   | Greenberg| Kauchak 
           | Wu         | CS52   | CS62     | CS81    
-          | Systems    | Algs   | NP1 DET CN | NP2 DET RCN 
+          | Systems    | Algs   | Edmunds  | Lincoln
+          | Skyspace   | Frary  | Frank    | NP1 DET CN | NP2 DET RCN 
           deriving Show
 data DET  = The | Every | Some | No | Most
           deriving Show
 data CN   = Girl   | Boy   | Princess | Dwarf | Giant 
-          | Wizard | Sword | Dagger | Beanbag | Hall
-          | Office | Lab | Classroom
-          deriving Show 
+          | Wizard | Sword | Dagger deriving Show 
 data ADJ  = Fake deriving Show
 data RCN  = RCN1 CN That VP | RCN2 CN That NP TV
           | RCN3 ADJ CN
