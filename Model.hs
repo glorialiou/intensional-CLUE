@@ -16,8 +16,9 @@ entities :: [Entity]
 entities =  [minBound..maxBound] 
 
 -- constants that will be interpreted as elements of Entity
-snowWhite, alice, dorothy, goldilocks, littleMook, atreyu, bruce, chen, greenberg, kauchak, wu, cs52, cs62, cs81, systems, algs :: Entity
+snowWhite, alice, dorothy, goldilocks, littleMook, atreyu, bruce, chen, greenberg, kauchak, wu, cs52, cs62, cs81, systems, algs, edmunds, lincoln, skyspace, frary, frank :: Entity
 
+--WE SHOULD COME BACK TO THESE AND SEE IF WE NEED TO COME UP WITH BETTER ENTITIES 
 snowWhite  = S
 alice      = A
 dorothy    = D
@@ -34,7 +35,11 @@ cs62 = C
 cs81 = C
 systems = C
 algs = C
-
+edmunds = L
+lincoln = L
+skyspace = L
+frary = L
+frank = L
 
 -- Types for predicates on the model.  Notice all are "Curried"
 type OnePlacePred   = Entity -> Bool
@@ -47,9 +52,8 @@ type ThreePlacePred = Entity -> Entity -> Entity -> Bool
 list2OnePlacePred :: [Entity] -> OnePlacePred
 list2OnePlacePred xs = \ x -> elem x xs
 
--- Sample one-place predicates representing nouns PUT OTHERS HERE
-girl, boy, princess, dwarf, giant, wizard, sword, dagger,
-      beanbag, office, lab, classroom :: OnePlacePred
+-- Sample one-place predicates representing nouns 
+girl, boy, princess, dwarf, giant, wizard, sword, dagger :: OnePlacePred
 
 -- Define characteristic functions for each unary relation
 girl     = list2OnePlacePred [S,A,D,G]
@@ -60,14 +64,6 @@ giant    = list2OnePlacePred [T]
 wizard   = list2OnePlacePred [W,V]
 sword    = list2OnePlacePred [F]
 dagger   = list2OnePlacePred [X]
-
-beanbag = list2OnePlacePred [L]
-hall = list2OnePlacePred [L]
-office = list2OnePlacePred [L]
-lab = list2OnePlacePred [L]
-classroom = list2OnePlacePred[L]
-location = list2OnePlacePred[L]
-
 
 -- Predicates defined from earlier predicates
 child, person, man, woman, male, female, thing :: OnePlacePred
