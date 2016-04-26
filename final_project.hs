@@ -1,5 +1,6 @@
 --Melissa Grueter
 --Gloria Liou
+
 module CLUE where 
 
 import Data.Word
@@ -17,7 +18,7 @@ import TCOM
 --data Class = CS52 | CS62 | CS81 | Systems | Algs deriving Show
 --data Location = Edmunds | Lincoln | Skyspace |  Frary | Frank deriving Show
 
---remainingworlds should be the set of worlds 
+--remainingworlds should be the set of worlds
 remainingWorlds = worlds
 correctWorld = W47
 -- rand =  get a random number 1-125 
@@ -32,6 +33,7 @@ correctWorld = W47
 
 --WE ARE GONNA HAVE TO MAKE ALL THE LOCATIONS PROPER NOUNS FOR THIS TO WORK - CAN'T == LIST2ONEPLACEPRED
 --evaluate guesses using intensional world stuff and a world
+evalGuess :: [Char] -> World -> Bool
 evalGuess "Bruce" world = ((iBruce world) == killer)
 evalGuess "Chen" world = ((iChen world) == killer)
 evalGuess "Greenberg" world = ((iGreenberg world) == killer)
@@ -49,6 +51,7 @@ evalGuess "Frary" world = ((iFrary world) == crimescene)
 evalGuess "Frank" world = ((iFrank world) == crimescene)
 
 --thins the set of worlds in the case of an incorrect guess
+thinWorldsIncorrect :: [Char] -> [World] -> [World]
 thinWorldsIncorrect guess [] = []
 thinWorldsIncorrect guess (w:ws) =
                     if evalGuess guess w
@@ -56,6 +59,7 @@ thinWorldsIncorrect guess (w:ws) =
                     else (w:(thinWorldsIncorrect guess ws)) 
 
 --thins the set of worlds in the case of a correct guess 
+thinWorldsCorrect :: [Char] -> [World] -> [World]
 thinWorldsCorrect guess [] = []
 thinWorldsCorrect guess (w:ws) =
                   if evalGuess guess w
@@ -111,7 +115,7 @@ storyLine = do
    s <- getLine
    putStrLn ("But last night, something out of the ordinary happened.")
    s <- getLine
-   putStrLn ("A student was killed. The body was found right here, in the middle of Edmunds.\n")
+   putStrLn ("A student was killed. The body was found right here, in this very room.\n")
    s <- getLine
 
    putStrLn ("Who killed the student?")
@@ -148,17 +152,18 @@ storyLine = do
    s <- getLine
    putStrLn ("Was it...")
    s <- getLine
-   putStrLn ("The beanbag in the lounge?")
+   putStrLn ("Edmunds?")
    s <- getLine
-   putStrLn ("The second floor hallway of Edmunds?")
+   putStrLn ("Lincoln?")
    s <- getLine
-   putStrLn ("Lori's office?")
+   putStrLn ("Skyspace?")
    s <- getLine
-   putStrLn ("The downstairs lab?")
+   putStrLn ("Frary?")
    s <- getLine
-   putStrLn ("A classroom?\n")
+   putStrLn ("Frank?\n")
    s <- getLine
    putStrLn ("Help us solve the mystery!\n\n")
+
 
 guessProfessor :: IO ()
 guessProfessor = do
@@ -194,9 +199,9 @@ guessWeapon = do
 
 guessLocation :: IO ()
 guessLocation = do
-   putStrLn "Where did (s)he kill the student?\nEnter 'Beanbag', 'Hall', 'Office', 'Lab', or 'Classroom':"
+   putStrLn "Where did (s)he kill the student?\nEnter 'Edmunds', 'Lincoln', 'Skyspace', 'Frary', or 'Frank':"
    s <- getLine
-   if s /= "Beanbag" && s /= "Hall" && s /= "Office" && s /= "Lab" && s /= "Classroom"
+   if s /= "Edmunds" && s /= "Lincoln" && s /= "Skyspace" && s /= "Frary" && s /= "Frank"
       then
          do putStrLn ("Interesting choice, but not one of the locations. Try again...\n")
             guessLocation
@@ -230,7 +235,7 @@ promptGuess = do
 guess :: IO ()
 guess = do
    putStrLn "Who killed the student, what did (s)he use, and where did it happen?"
-   putStrLn "Format: professor,class,location: (no spaces)"
+   putStrLn "Format: professor,class,location (no spaces)"
    s <- getLine
    if evalGuess ((wordsWhen (==',') s)!!0) correctWorld &&
       evalGuess ((wordsWhen (==',') s)!!1) correctWorld &&
@@ -255,5 +260,4 @@ prompt = do
 
 main = do
    storyLine
-   --genPossibleWords
    prompt
