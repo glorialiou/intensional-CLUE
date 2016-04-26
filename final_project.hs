@@ -15,8 +15,7 @@ import TCOM
 --data Clue = Professor Professor | Class Class | Location Location deriving Show
 --data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
 --data Class = CS52 | CS62 | CS81 | Systems | Algs deriving Show
---data Location = Beanbag | Hall | Office | Lab | Classroom deriving Show
---data CorrectWorld = World {p :: Professor, c :: Class, l :: Location} deriving Show
+--data Location = Edmunds | Lincoln | Skyspace |  Frary | Frank deriving Show
 
 --remainingworlds should be the set of worlds 
 remainingWorlds = worlds
@@ -43,11 +42,11 @@ evalGuess "CS62" world = ((iCS62 world) == weapon)
 evalGuess "CS81" world = ((iCS81 world) == weapon)
 evalGuess "Systems" world = ((iSystems world) == weapon)
 evalGuess "Algs" world = ((iAlgs world) == weapon)
-evalGuess "Beanbag" world = ((iBeanbag world) == crimescene)
-evalGuess "Hall" world = ((iHall world) == crimescene)
-evalGuess "Office" world = ((iOffice world) == crimescene)
-evalGuess "Lab" world = ((iLab world) == crimescene)
-evalGuess "Classroom" world = ((iClassroom world) == crimescene)
+evalGuess "Edmunds" world = ((iEdmunds world) == crimescene)
+evalGuess "Lincoln" world = ((iLincoln world) == crimescene)
+evalGuess "Skyspace" world = ((iSkyspace world) == crimescene)
+evalGuess "Frary" world = ((iFrary world) == crimescene)
+evalGuess "Frank" world = ((iFrank world) == crimescene)
 
 --thins the set of worlds in the case of an incorrect guess
 thinWorldsIncorrect guess [] = []
@@ -89,19 +88,13 @@ genClass = case (randomNumbers 1) of
          [5] -> Algs
 
 genLocation = case (randomNumbers 1) of
-         [1] -> Beanbag
-         [2] -> Hall
-         [3] -> Office
-         [4] -> Lab
-         [5] -> Classroom
+         [1] -> Edmunds
+         [2] -> Lincoln
+         [3] -> Skyspace
+         [4] -> Frary 
+         [5] -> Frank
 
---genWorld = World {p = genProf, c = genClass, l = genLocation}
-
---worldToString :: CorrectWorld -> [String]
---worldToString (World {p = prof, c = clas, l = loca}) = [show prof, show clas, show loca]
---We should end up picking a world from the set of possible worlds, i.e. W109
-
-
+--We should pick a world from the set of possible worlds, i.e. W109
 --genPossibleWorlds
 
 storyLine :: IO ()
