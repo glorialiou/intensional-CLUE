@@ -13,26 +13,16 @@ import Model
 import Model2
 import TCOM
 
---data Clue = Professor Professor | Class Class | Location Location deriving Show
---data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
---data Class = CS52 | CS62 | CS81 | Systems | Algs deriving Show
---data Location = Edmunds | Lincoln | Skyspace |  Frary | Frank deriving Show
+--rand =  get a random number 1-125
+rand = do
+  x <- getStdRandom (randomR (1, 125)) :: IO Int --x is an Int
+  let result = genCorrectWorld x
+  return result
 
---remainingworlds should be the set of worlds
-remainingWorlds = worlds
+genCorrectWorld _ = W47
 correctWorld = W47
--- rand =  get a random number 1-125 
 
---pick a world based on a number input
---genWorld 1 = W1
---genWorld 2 = W2
--- ...
-
---correct world = world chosen using random number
---correctWorld = genWorld rand
-
---WE ARE GONNA HAVE TO MAKE ALL THE LOCATIONS PROPER NOUNS FOR THIS TO WORK - CAN'T == LIST2ONEPLACEPRED
---evaluate guesses using intensional world stuff and a world
+--evaluate guesses using intensional worlds
 evalGuess :: [Char] -> World -> Bool
 evalGuess "Bruce" world = ((iBruce world) == killer)
 evalGuess "Chen" world = ((iChen world) == killer)
@@ -65,41 +55,7 @@ thinWorldsCorrect guess (w:ws) =
                   if evalGuess guess w
                      then (w:(thinWorldsCorrect guess ws))
                   else thinWorldsCorrect guess ws 
-
-randomNumbers :: Int -> [Int]
-randomNumbers seed = take 1 . randomRs (1, 5) . mkStdGen $ seed
-
-random3 :: Int -> [Int]
-random3 i = let g = (mkStdGen i)
-                (n1, g1) = next g
-                (n2, g2) = next g1
-                (n3, g3) = next g2
-            in [n1,n2,n3]
             
---make seed random
-genProf = case (randomNumbers 1) of
-         [1] -> Bruce
-         [2] -> Chen
-         [3] -> Greenberg
-         [4] -> Kauchak
-         [5] -> Wu
-
-genClass = case (randomNumbers 1) of
-         [1] -> CS52
-         [2] -> CS62
-         [3] -> CS81
-         [4] -> Systems
-         [5] -> Algs
-
-genLocation = case (randomNumbers 1) of
-         [1] -> Edmunds
-         [2] -> Lincoln
-         [3] -> Skyspace
-         [4] -> Frary 
-         [5] -> Frank
-
---We should pick a world from the set of possible worlds, i.e. W109
---genPossibleWorlds
 
 storyLine :: IO ()
 storyLine = do
@@ -165,55 +121,74 @@ storyLine = do
    putStrLn ("Help us solve the mystery!\n\n")
 
 
-guessProfessor :: IO ()
-guessProfessor = do
+guessProfessor :: [World] -> IO ()
+guessProfessor w = do
    putStrLn ("Who killed the student?\nEnter 'Bruce', 'Chen', 'Greenberg', 'Kauchak', or 'Wu':")
    s <- getLine
    if s /= "Bruce" && s /= "Chen" && s /= "Greenberg" && s /= "Kauchak" && s /= "Wu"
       then
          do putStrLn ("Huh? That's not a Pomona CS professor! Try again...\n")
-            guessProfessor
-   else if evalGuess s correctWorld --WE SHOULD UPDATE STUFF SO WE CAN SAY if "Bruce is the killer" 
-      then putStrLn ("Correct! "++s++" was the cold-blooded killer.\n")
-           --had to use x here because was having problem setting directly... ?
-        --   x = thinWorldsCorrect s remainingWorlds
-          -- remainingWorlds = x
-   else putStrLn (""++s++" is innocent! How dare you suspect them!\n")
-        -- x = thinWorldsIncorrect s remainingWorlds
-         -- remainingWorlds = x
-guessWeapon :: IO ()
-guessWeapon = do
+            guessProfessor w
+   else if evalGuess s correctWorld
+      then
+         do putStrLn ("Correct! "++s++" was the cold-blooded killer.\n")
+            print (thinWorldsCorrect s w)
+            guessWeapon (thinWorldsCorrect s w)
+   else 
+      do putStrLn (""++s++" is innocent! How dare you suspect them!\n")
+         print (thinWorldsIncorrect s w)
+         guessWeapon (thinWorldsIncorrect s w)
+
+
+guessWeapon :: [World] -> IO ()
+guessWeapon w = do
    putStrLn "Which class did (s)he use?\nEnter 'CS52', 'CS62', 'CS81', 'Systems', or 'Algs':"
    s <- getLine
    if s /= "CS52" && s /= "CS62" && s /= "CS81" && s /= "Systems" && s /= "Algs"
       then
          do putStrLn ("Possibly...but that's not one of options! Try again...\n")
-            guessWeapon
+            guessWeapon w
    else if evalGuess s correctWorld
-      then putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual punishment indeed!\n")
-        --   x = thinWorldsCorrect s remainingWorlds
-          -- remainingWorlds = x
-   else putStrLn ("Please, "++s++" is easy! That class never killed anybody.\n")
-      -- x = thinWorldsIncorrect s remainingWorlds
-      -- remainingWorlds = x
+      then
+         do putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual punishment indeed!\n")
+            print (thinWorldsCorrect s w)
+            guessLocation (thinWorldsCorrect s w)
+   else
+      do putStrLn ("Please, "++s++" is easy! That class never killed anybody.\n")
+         print (thinWorldsIncorrect s w)
+         guessLocation (thinWorldsIncorrect s w)
 
-guessLocation :: IO ()
-guessLocation = do
+
+guessLocation :: [World] -> IO ()
+guessLocation w = do
    putStrLn "Where did (s)he kill the student?\nEnter 'Edmunds', 'Lincoln', 'Skyspace', 'Frary', or 'Frank':"
    s <- getLine
    if s /= "Edmunds" && s /= "Lincoln" && s /= "Skyspace" && s /= "Frary" && s /= "Frank"
       then
          do putStrLn ("Interesting choice, but not one of the locations. Try again...\n")
-            guessLocation
+            guessLocation w
    else if evalGuess s correctWorld
-      then putStrLn ("Correct! The "++s++"...the perfect place to kill someone!\n")
-           --x = thinWorldsCorrect s remainingWorlds
-           --remainingWorlds = x         
+      then
+         do putStrLn ("Correct! The "++s++"...the perfect place to kill someone!\n")
+            print (thinWorldsCorrect s w)
+            promptGuess (thinWorldsCorrect s w)   
    else
       do putStrLn ("The "++s++"? Nothing ever happens there.")
          putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.\n")
-           -- x = thinWorldsIncorrect s remainingWorlds
-           -- remainingWorlds = x
+         print (thinWorldsIncorrect s w)
+         promptGuess (thinWorldsIncorrect s w)
+
+
+promptGuess :: [World] -> IO ()
+promptGuess w = do
+   putStrLn "Are you ready to solve the mystery?"
+   putStrLn "Enter 'yes' to guess, any other key to start over:"
+   s <- getLine
+   if (s == "yes")
+      then
+         do guess w
+   else
+      do prompt w
 
 wordsWhen :: (Char -> Bool) -> String -> [String]
 wordsWhen p s =  case dropWhile p s of
@@ -221,19 +196,8 @@ wordsWhen p s =  case dropWhile p s of
                   s' -> w : wordsWhen p s''
                         where (w, s'') = break p s'
 
-promptGuess :: IO ()
-promptGuess = do
-   putStrLn "Are you ready to solve the mystery?"
-   putStrLn "Enter 'yes' to guess, any other key to start over:"
-   s <- getLine
-   if (s == "yes")
-      then
-         do guess
-   else
-      do prompt
-
-guess :: IO ()
-guess = do
+guess :: [World] -> IO ()
+guess w = do
    putStrLn "Who killed the student, what did (s)he use, and where did it happen?"
    putStrLn "Format: professor,class,location (no spaces)"
    s <- getLine
@@ -245,19 +209,69 @@ guess = do
    else
       do putStrLn ("Not quite...\n")
          -- thin worlds using thinWorldsIncorrect for each of the guesses 
-         prompt
+         prompt w
 
---thin possible worlds
-prompt :: IO ()
-prompt = do
-   -- I THINK WE'RE GOING TO HAVE TO MAKE EACH RETURN THE SET OF REMAINING WORLDS TO PASS AROUND
+
+prompt :: [World] -> IO ()
+prompt w = do
+   putStrLn ("Enter to play!")
    s <- getLine
-   guessProfessor
-   guessWeapon
-   guessLocation
-   promptGuess
+   guessProfessor w
 
 
 main = do
-   storyLine
-   prompt
+   --storyLine
+   prompt worlds
+
+--data Clue = Professor Professor | Class Class | Location Location deriving Show
+--data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
+--data Class = CS52 | CS62 | CS81 | Systems | Algs deriving Show
+--data Location = Edmunds | Lincoln | Skyspace | Frary | Frank deriving Show
+
+--rollDice :: IO Int
+--rollDice = getStdRandom (randomR (1,125))
+
+--randomNumbers :: Int -> [Int]
+--randomNumbers seed = take 1 . randomRs (1, 125) . mkStdGen $ seed
+
+--random3 :: Int -> [Int]
+--random3 i = let g = (mkStdGen i)
+--                (n1, g1) = next g
+--                (n2, g2) = next g1
+--                (n3, g3) = next g2
+--            in [n1,n2,n3]
+
+--pick a world based on a number input
+--genWorld 1 = W1
+--genWorld 2 = W2
+
+--We should pick a world from the set of possible worlds, i.e. W109
+--genPossibleWorlds
+
+--correct world = world chosen using random number
+--correctWorld = genWorld rand
+
+--make seed random
+--genProf = case (randomNumbers 1) of
+--         [1] -> Bruce
+--         [2] -> Chen
+--         [3] -> Greenberg
+--         [4] -> Kauchak
+--         [5] -> Wu
+
+--genClass = case (randomNumbers 1) of
+--         [1] -> CS52
+--         [2] -> CS62
+--         [3] -> CS81
+--         [4] -> Systems
+--         [5] -> Algs
+
+--genLocation = case (randomNumbers 1) of
+--         [1] -> Edmunds
+--         [2] -> Lincoln
+--         [3] -> Skyspace
+--         [4] -> Frary 
+--         [5] -> Frank
+
+--remainingworlds should be the set of worlds
+--remainingWorlds = worlds
