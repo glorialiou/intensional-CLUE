@@ -18,7 +18,7 @@ data World = W1 | W2 | W3 | W4 | W5 | W6 | W7 | W8 | W9 | W10 |
      W111 | W112 | W113 | W114 | W115 | W116 | W117 | W118 | W119 | W120 |
      W121 | W122 | W123 | W124 | W125 deriving (Eq,Show,Ord)
 
---We will need to thin these out
+--Initial set of worlds
 worlds :: [World]
 worlds = [W1,W2,W3,W4,W5,W6,W7,W8,W9,W10,
          W11,W12,W13,W14,W15,W16,W17,W18,W19,W20,
@@ -34,8 +34,136 @@ worlds = [W1,W2,W3,W4,W5,W6,W7,W8,W9,W10,
          W111,W112,W113,W114,W115,W116,W117,W118,W119,W120,
          W121,W122,W123,W124,W125]
 
+--Generate correct world
+genCorrectWorld 1 = W1
+genCorrectWorld 2 = W2
+genCorrectWorld 3 = W3
+genCorrectWorld 4 = W4
+genCorrectWorld 5 = W5
+genCorrectWorld 6 = W6
+genCorrectWorld 7 = W7
+genCorrectWorld 8 = W8
+genCorrectWorld 9 = W9
+genCorrectWorld 10 = W10
+genCorrectWorld 11 = W11
+genCorrectWorld 12 = W12
+genCorrectWorld 13 = W13
+genCorrectWorld 14 = W14
+genCorrectWorld 15 = W15
+genCorrectWorld 16 = W16
+genCorrectWorld 17 = W17
+genCorrectWorld 18 = W18
+genCorrectWorld 19 = W19
+genCorrectWorld 20 = W20
+genCorrectWorld 21 = W21
+genCorrectWorld 22 = W22
+genCorrectWorld 23 = W23
+genCorrectWorld 24 = W24
+genCorrectWorld 25 = W25
+genCorrectWorld 26 = W26
+genCorrectWorld 27 = W27
+genCorrectWorld 28 = W28
+genCorrectWorld 29 = W29
+genCorrectWorld 30 = W30
+genCorrectWorld 31 = W31
+genCorrectWorld 32 = W32
+genCorrectWorld 33 = W33
+genCorrectWorld 34 = W34
+genCorrectWorld 35 = W35
+genCorrectWorld 36 = W36
+genCorrectWorld 37 = W37
+genCorrectWorld 38 = W38
+genCorrectWorld 39 = W39
+genCorrectWorld 40 = W40
+genCorrectWorld 41 = W41
+genCorrectWorld 42 = W42
+genCorrectWorld 43 = W43
+genCorrectWorld 44 = W44
+genCorrectWorld 45 = W45
+genCorrectWorld 46 = W46
+genCorrectWorld 47 = W47
+genCorrectWorld 48 = W48
+genCorrectWorld 49 = W49
+genCorrectWorld 50 = W50
+genCorrectWorld 51 = W51
+genCorrectWorld 52 = W52
+genCorrectWorld 53 = W53
+genCorrectWorld 54 = W54
+genCorrectWorld 55 = W55
+genCorrectWorld 56 = W56
+genCorrectWorld 57 = W57
+genCorrectWorld 58 = W58
+genCorrectWorld 59 = W59
+genCorrectWorld 60 = W60
+genCorrectWorld 61 = W61
+genCorrectWorld 62 = W62
+genCorrectWorld 63 = W63
+genCorrectWorld 64 = W64
+genCorrectWorld 65 = W65
+genCorrectWorld 66 = W66
+genCorrectWorld 67 = W67
+genCorrectWorld 68 = W68
+genCorrectWorld 69 = W69
+genCorrectWorld 70 = W70
+genCorrectWorld 71 = W71
+genCorrectWorld 72 = W72
+genCorrectWorld 73 = W73
+genCorrectWorld 74 = W74
+genCorrectWorld 75 = W75
+genCorrectWorld 76 = W76
+genCorrectWorld 77 = W77
+genCorrectWorld 78 = W78
+genCorrectWorld 79 = W79
+genCorrectWorld 80 = W80
+genCorrectWorld 81 = W81
+genCorrectWorld 82 = W82
+genCorrectWorld 83 = W83
+genCorrectWorld 84 = W84
+genCorrectWorld 85 = W85
+genCorrectWorld 86 = W86
+genCorrectWorld 87 = W87
+genCorrectWorld 88 = W88
+genCorrectWorld 89 = W89
+genCorrectWorld 90 = W90
+genCorrectWorld 91 = W91
+genCorrectWorld 92 = W92
+genCorrectWorld 93 = W93
+genCorrectWorld 94 = W94
+genCorrectWorld 95 = W95
+genCorrectWorld 96 = W96
+genCorrectWorld 97 = W97
+genCorrectWorld 98 = W98
+genCorrectWorld 99 = W99
+genCorrectWorld 100 = W100
+genCorrectWorld 101 = W101
+genCorrectWorld 102 = W102
+genCorrectWorld 103 = W103
+genCorrectWorld 104 = W104
+genCorrectWorld 105 = W105
+genCorrectWorld 106 = W106
+genCorrectWorld 107 = W107
+genCorrectWorld 108 = W108
+genCorrectWorld 109 = W109
+genCorrectWorld 110 = W110
+genCorrectWorld 111 = W111
+genCorrectWorld 112 = W112
+genCorrectWorld 113 = W113
+genCorrectWorld 114 = W114
+genCorrectWorld 115 = W115
+genCorrectWorld 116 = W116
+genCorrectWorld 117 = W117
+genCorrectWorld 118 = W118
+genCorrectWorld 119 = W119
+genCorrectWorld 120 = W120
+genCorrectWorld 121 = W121
+genCorrectWorld 122 = W122
+genCorrectWorld 123 = W123
+genCorrectWorld 124 = W124
+genCorrectWorld 125 = W125
+genCorrectWorld _ = W47
+
 --  -- PROFESSORS -- -- 
---Prof Bruce
+--Bruce
 iBruce :: IEntity
 iBruce W1 = killer
 iBruce W2 = killer
@@ -64,7 +192,7 @@ iBruce W24 = killer
 iBruce W25 = killer
 iBruce _ = bruce
 
---Prof Chen
+--Chen
 iChen :: IEntity
 iChen W26 = killer
 iChen W27 = killer
@@ -476,6 +604,7 @@ iFrank W115 = crimescene
 iFrank W120 = crimescene
 iFrank W125 = crimescene
 iFrank _ = frank
+
 
 type IEntity = World -> Entity
 type IBool   = World -> Bool
