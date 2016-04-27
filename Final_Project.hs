@@ -13,15 +13,6 @@ import Model
 import Model2
 import TCOM
 
---rand =  get a random number 1-125
-rand = do
-  x <- getStdRandom (randomR (1, 125)) :: IO Int --x is an Int
-  let result = genCorrectWorld x
-  return result
-
-genCorrectWorld _ = W47
-correctWorld = W47
-
 --evaluate guesses using intensional worlds
 evalGuess :: [Char] -> World -> Bool
 evalGuess "Bruce" world = ((iBruce world) == killer)
@@ -121,74 +112,74 @@ storyLine = do
    putStrLn ("Help us solve the mystery!\n\n")
 
 
-guessProfessor :: [World] -> IO ()
-guessProfessor w = do
+guessProfessor :: World -> [World] -> IO ()
+guessProfessor c w = do
    putStrLn ("Who killed the student?\nEnter 'Bruce', 'Chen', 'Greenberg', 'Kauchak', or 'Wu':")
    s <- getLine
    if s /= "Bruce" && s /= "Chen" && s /= "Greenberg" && s /= "Kauchak" && s /= "Wu"
       then
          do putStrLn ("Huh? That's not a Pomona CS professor! Try again...\n")
-            guessProfessor w
-   else if evalGuess s correctWorld
+            guessProfessor c w
+   else if evalGuess s c
       then
          do putStrLn ("Correct! "++s++" was the cold-blooded killer.\n")
             print (thinWorldsCorrect s w)
-            guessWeapon (thinWorldsCorrect s w)
+            guessWeapon c (thinWorldsCorrect s w)
    else 
       do putStrLn (""++s++" is innocent! How dare you suspect them!\n")
          print (thinWorldsIncorrect s w)
-         guessWeapon (thinWorldsIncorrect s w)
+         guessWeapon c (thinWorldsIncorrect s w)
 
 
-guessWeapon :: [World] -> IO ()
-guessWeapon w = do
+guessWeapon :: World -> [World] -> IO ()
+guessWeapon c w = do
    putStrLn "Which class did (s)he use?\nEnter 'CS52', 'CS62', 'CS81', 'Systems', or 'Algs':"
    s <- getLine
    if s /= "CS52" && s /= "CS62" && s /= "CS81" && s /= "Systems" && s /= "Algs"
       then
          do putStrLn ("Possibly...but that's not one of options! Try again...\n")
-            guessWeapon w
-   else if evalGuess s correctWorld
+            guessWeapon c w
+   else if evalGuess s c
       then
          do putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual punishment indeed!\n")
             print (thinWorldsCorrect s w)
-            guessLocation (thinWorldsCorrect s w)
+            guessLocation c (thinWorldsCorrect s w)
    else
       do putStrLn ("Please, "++s++" is easy! That class never killed anybody.\n")
          print (thinWorldsIncorrect s w)
-         guessLocation (thinWorldsIncorrect s w)
+         guessLocation c (thinWorldsIncorrect s w)
 
 
-guessLocation :: [World] -> IO ()
-guessLocation w = do
+guessLocation :: World -> [World] -> IO ()
+guessLocation c w = do
    putStrLn "Where did (s)he kill the student?\nEnter 'Edmunds', 'Lincoln', 'Skyspace', 'Frary', or 'Frank':"
    s <- getLine
    if s /= "Edmunds" && s /= "Lincoln" && s /= "Skyspace" && s /= "Frary" && s /= "Frank"
       then
          do putStrLn ("Interesting choice, but not one of the locations. Try again...\n")
-            guessLocation w
-   else if evalGuess s correctWorld
+            guessLocation c w
+   else if evalGuess s c
       then
          do putStrLn ("Correct! The "++s++"...the perfect place to kill someone!\n")
             print (thinWorldsCorrect s w)
-            promptGuess (thinWorldsCorrect s w)   
+            promptGuess c (thinWorldsCorrect s w)   
    else
-      do putStrLn ("The "++s++"? Nothing ever happens there.")
+      do putStrLn (""++s++"? Nothing ever happens there.")
          putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.\n")
          print (thinWorldsIncorrect s w)
-         promptGuess (thinWorldsIncorrect s w)
+         promptGuess c (thinWorldsIncorrect s w)
 
 
-promptGuess :: [World] -> IO ()
-promptGuess w = do
+promptGuess :: World -> [World] -> IO ()
+promptGuess c w = do
    putStrLn "Are you ready to solve the mystery?"
    putStrLn "Enter 'yes' to guess, any other key to start over:"
    s <- getLine
    if (s == "yes")
       then
-         do guess w
+         do guess c w
    else
-      do prompt w
+      do prompt c w
 
 wordsWhen :: (Char -> Bool) -> String -> [String]
 wordsWhen p s =  case dropWhile p s of
@@ -196,32 +187,36 @@ wordsWhen p s =  case dropWhile p s of
                   s' -> w : wordsWhen p s''
                         where (w, s'') = break p s'
 
-guess :: [World] -> IO ()
-guess w = do
+guess :: World -> [World] -> IO ()
+guess c w = do
    putStrLn "Who killed the student, what did (s)he use, and where did it happen?"
    putStrLn "Format: professor,class,location (no spaces)"
    s <- getLine
-   if evalGuess ((wordsWhen (==',') s)!!0) correctWorld &&
-      evalGuess ((wordsWhen (==',') s)!!1) correctWorld &&
-      evalGuess ((wordsWhen (==',') s)!!2) correctWorld
+   if evalGuess ((wordsWhen (==',') s)!!0) c &&
+      evalGuess ((wordsWhen (==',') s)!!1) c &&
+      evalGuess ((wordsWhen (==',') s)!!2) c
       then putStrLn ("CONGRATULATIONS! You saved Pomona's CS department!\n")
       --remainingWorlds = correctWorld
    else
       do putStrLn ("Not quite...\n")
          -- thin worlds using thinWorldsIncorrect for each of the guesses 
-         prompt w
+         prompt c w
 
 
-prompt :: [World] -> IO ()
-prompt w = do
+prompt :: World -> [World] -> IO ()
+prompt c w = do
    putStrLn ("Enter to play!")
    s <- getLine
-   guessProfessor w
+   guessProfessor c w
 
 
 main = do
-   --storyLine
-   prompt worlds
+   storyLine
+   x <- getStdRandom (randomR (1, 125)) :: IO Int
+   print x
+   let correct = genCorrectWorld x
+   print correct
+   prompt correct worlds
 
 --data Clue = Professor Professor | Class Class | Location Location deriving Show
 --data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
@@ -230,6 +225,12 @@ main = do
 
 --rollDice :: IO Int
 --rollDice = getStdRandom (randomR (1,125))
+
+--rand =  get a random number 1-125
+--rand = do
+--  x <- getStdRandom (randomR (1, 125)) :: IO Int --x is an Int
+--  let result = genCorrectWorld x
+--  return result
 
 --randomNumbers :: Int -> [Int]
 --randomNumbers seed = take 1 . randomRs (1, 125) . mkStdGen $ seed
@@ -250,6 +251,9 @@ main = do
 
 --correct world = world chosen using random number
 --correctWorld = genWorld rand
+--correctWorld = W47
+
+--genCorrectWorld _ = W47 --moved to EAI
 
 --make seed random
 --genProf = case (randomNumbers 1) of
