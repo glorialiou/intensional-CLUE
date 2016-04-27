@@ -192,9 +192,13 @@ guess c w = do
    putStrLn "Who killed the student, what did (s)he use, and where did it happen?"
    putStrLn "Format: professor,class,location (no spaces)"
    s <- getLine
-   if evalGuess ((wordsWhen (==',') s)!!0) c &&
+   let prof = ((wordsWhen (==',') s)!!0)
+   let course = ((wordsWhen (==',') s)!!1)
+   let loc = ((wordsWhen (==',') s)!!2)
+   if (prof /= course) && (prof /= loc) && (course /= loc) &&
+      evalGuess ((wordsWhen (==',') s)!!0) c &&
       evalGuess ((wordsWhen (==',') s)!!1) c &&
-      evalGuess ((wordsWhen (==',') s)!!2) c
+      evalGuess ((wordsWhen (==',') s)!!2) c 
       then putStrLn ("CONGRATULATIONS! You saved Pomona's CS department!\n")
       --remainingWorlds = correctWorld
    else
@@ -213,69 +217,8 @@ prompt c w = do
 main = do
    storyLine
    x <- getStdRandom (randomR (1, 125)) :: IO Int
-   print x
+   --print x
    let correct = genCorrectWorld x
-   print correct
+   --print correct
    prompt correct worlds
 
---data Clue = Professor Professor | Class Class | Location Location deriving Show
---data Professor = Bruce | Chen | Greenberg | Kauchak | Wu deriving Show
---data Class = CS52 | CS62 | CS81 | Systems | Algs deriving Show
---data Location = Edmunds | Lincoln | Skyspace | Frary | Frank deriving Show
-
---rollDice :: IO Int
---rollDice = getStdRandom (randomR (1,125))
-
---rand =  get a random number 1-125
---rand = do
---  x <- getStdRandom (randomR (1, 125)) :: IO Int --x is an Int
---  let result = genCorrectWorld x
---  return result
-
---randomNumbers :: Int -> [Int]
---randomNumbers seed = take 1 . randomRs (1, 125) . mkStdGen $ seed
-
---random3 :: Int -> [Int]
---random3 i = let g = (mkStdGen i)
---                (n1, g1) = next g
---                (n2, g2) = next g1
---                (n3, g3) = next g2
---            in [n1,n2,n3]
-
---pick a world based on a number input
---genWorld 1 = W1
---genWorld 2 = W2
-
---We should pick a world from the set of possible worlds, i.e. W109
---genPossibleWorlds
-
---correct world = world chosen using random number
---correctWorld = genWorld rand
---correctWorld = W47
-
---genCorrectWorld _ = W47 --moved to EAI
-
---make seed random
---genProf = case (randomNumbers 1) of
---         [1] -> Bruce
---         [2] -> Chen
---         [3] -> Greenberg
---         [4] -> Kauchak
---         [5] -> Wu
-
---genClass = case (randomNumbers 1) of
---         [1] -> CS52
---         [2] -> CS62
---         [3] -> CS81
---         [4] -> Systems
---         [5] -> Algs
-
---genLocation = case (randomNumbers 1) of
---         [1] -> Edmunds
---         [2] -> Lincoln
---         [3] -> Skyspace
---         [4] -> Frary 
---         [5] -> Frank
-
---remainingworlds should be the set of worlds
---remainingWorlds = worlds
