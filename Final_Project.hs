@@ -6,7 +6,6 @@ module CLUE where
 import Data.Word
 import Data.IORef
 import System.Random
-import Data.Time.Clock.POSIX
 import EAI
 import FSynF
 import Model
@@ -123,11 +122,9 @@ guessProfessor c w = do
    else if evalGuess s c
       then
          do putStrLn ("Correct! "++s++" was the cold-blooded killer.\n")
-            print (thinWorldsCorrect s w)
             guessWeapon c (thinWorldsCorrect s w)
    else 
       do putStrLn (""++s++" is innocent! How dare you suspect them!\n")
-         print (thinWorldsIncorrect s w)
          guessWeapon c (thinWorldsIncorrect s w)
 
 
@@ -142,11 +139,9 @@ guessWeapon c w = do
    else if evalGuess s c
       then
          do putStrLn ("Correct! "++s++" was the murder weapon...cruel and unusual punishment indeed!\n")
-            print (thinWorldsCorrect s w)
             guessLocation c (thinWorldsCorrect s w)
    else
       do putStrLn ("Please, "++s++" is easy! That class never killed anybody.\n")
-         print (thinWorldsIncorrect s w)
          guessLocation c (thinWorldsIncorrect s w)
 
 
@@ -161,12 +156,10 @@ guessLocation c w = do
    else if evalGuess s c
       then
          do putStrLn ("Correct! The "++s++"...the perfect place to kill someone!\n")
-            print (thinWorldsCorrect s w)
             promptGuess c (thinWorldsCorrect s w)   
    else
       do putStrLn (""++s++"? Nothing ever happens there.")
          putStrLn ("Let's try that again. Hurry up, before another CS student gets killed.\n")
-         print (thinWorldsIncorrect s w)
          promptGuess c (thinWorldsIncorrect s w)
 
 
@@ -192,18 +185,22 @@ guess c w = do
    putStrLn "Who killed the student, what did (s)he use, and where did it happen?"
    putStrLn "Format: professor,class,location (no spaces)"
    s <- getLine
-   let prof = ((wordsWhen (==',') s)!!0)
-   let course = ((wordsWhen (==',') s)!!1)
-   let loc = ((wordsWhen (==',') s)!!2)
-   if (prof /= course) && (prof /= loc) && (course /= loc) &&
-      evalGuess ((wordsWhen (==',') s)!!0) c &&
-      evalGuess ((wordsWhen (==',') s)!!1) c &&
-      evalGuess ((wordsWhen (==',') s)!!2) c 
+   let x = (wordsWhen (==',') s)!!0
+   let y = (wordsWhen (==',') s)!!1
+   let z = (wordsWhen (==',') s)!!2
+   if (x /= "Bruce" && x /= "Chen" && x /= "Greenberg" && x /= "Kauchak" && x /= "Wu") ||
+      (y /= "CS52" && y /= "CS62" && y /= "CS81" && y /= "Systems" && y /= "Algs") ||
+      (z /= "Edmunds" && z /= "Lincoln" && z /= "Skyspace" && z /= "Frary" && z /= "Frank")
+      then
+         do putStrLn ("You definitely didn't format that correctly.\n")
+            guess c w
+   else if evalGuess x c && evalGuess y c && evalGuess z c
       then putStrLn ("CONGRATULATIONS! You saved Pomona's CS department!\n")
-      --remainingWorlds = correctWorld
+   else if (length w == 1)
+      then putStrLn ("It's too late...you didn't catch "++x++" in time.")
    else
       do putStrLn ("Not quite...\n")
-         -- thin worlds using thinWorldsIncorrect for each of the guesses 
+         -- thin worlds using thinWorldsIncorrect (or Correct) for each of the guesses
          prompt c w
 
 
@@ -215,10 +212,9 @@ prompt c w = do
 
 
 main = do
-   storyLine
+   --storyLine
    x <- getStdRandom (randomR (1, 125)) :: IO Int
    --print x
    let correct = genCorrectWorld x
    --print correct
    prompt correct worlds
-
