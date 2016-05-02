@@ -14,21 +14,21 @@ import TCOM
 
 --evaluate guesses using intensional worlds
 evalGuess :: [Char] -> World -> Bool
-evalGuess "Bruce" world = ((iBruce world) == killer)
-evalGuess "Chen" world = ((iChen world) == killer)
-evalGuess "Greenberg" world = ((iGreenberg world) == killer)
-evalGuess "Kauchak" world = ((iKauchak world) == killer)
-evalGuess "Wu" world = ((iWu world) == killer)
-evalGuess "CS52" world = ((iCS52 world) == weapon)
-evalGuess "CS62" world = ((iCS62 world) == weapon)
-evalGuess "CS81" world = ((iCS81 world) == weapon)
-evalGuess "Systems" world = ((iSystems world) == weapon)
-evalGuess "Algs" world = ((iAlgs world) == weapon)
-evalGuess "Edmunds" world = ((iEdmunds world) == crimescene)
-evalGuess "Lincoln" world = ((iLincoln world) == crimescene)
-evalGuess "Skyspace" world = ((iSkyspace world) == crimescene)
-evalGuess "Frary" world = ((iFrary world) == crimescene)
-evalGuess "Frank" world = ((iFrank world) == crimescene)
+evalGuess "Bruce" world = iSent (Sent Bruce (VP1 Is (NP1 The Killer))) world
+evalGuess "Chen" world = iSent (Sent Chen (VP1 Is (NP1 The Killer))) world
+evalGuess "Greenberg" world = iSent (Sent Greenberg (VP1 Is (NP1 The Killer))) world
+evalGuess "Kauchak" world = iSent (Sent Kauchak (VP1 Is (NP1 The Killer))) world
+evalGuess "Wu" world = iSent (Sent Wu (VP1 Is (NP1 The Killer))) world
+evalGuess "CS52" world = iSent (Sent CS52 (VP1 Is (NP1 The Weapon))) world
+evalGuess "CS62" world = iSent (Sent CS62 (VP1 Is (NP1 The Weapon))) world
+evalGuess "CS81" world = iSent (Sent CS81 (VP1 Is (NP1 The Weapon))) world
+evalGuess "Systems" world = iSent (Sent Systems (VP1 Is (NP1 The Weapon))) world
+evalGuess "Algs" world = iSent (Sent Algs (VP1 Is (NP1 The Weapon))) world
+evalGuess "Edmunds" world = iSent (Sent Edmunds (VP1 Is (NP1 The Crimescene))) world
+evalGuess "Lincoln" world = iSent (Sent Lincoln (VP1 Is (NP1 The Crimescene))) world
+evalGuess "Skyspace" world = iSent (Sent Skyspace (VP1 Is (NP1 The Crimescene))) world
+evalGuess "Frary" world = iSent (Sent Frary (VP1 Is (NP1 The Crimescene))) world
+evalGuess "Frank" world = iSent (Sent Frank (VP1 Is (NP1 The Crimescene))) world
 
 --thins the set of worlds in the case of an incorrect guess
 thinWorldsIncorrect :: [Char] -> [World] -> [World]
