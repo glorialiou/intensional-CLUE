@@ -40,7 +40,7 @@ data NP   = SnowWhite  | Alice  | Dorothy  | Goldilocks
 data DET  = The | Every | Some | No | Most
           deriving Show
 data CN   = Girl   | Boy   | Princess | Dwarf | Giant 
-          | Wizard | Sword | Dagger deriving Show 
+          | Wizard | Sword | Dagger | Killer | Weapon | Crimescene deriving Show -- ADDED KILLER
 data ADJ  = Fake deriving Show
 data RCN  = RCN1 CN That VP | RCN2 CN That NP TV
           | RCN3 ADJ CN
@@ -48,10 +48,10 @@ data RCN  = RCN1 CN That VP | RCN2 CN That NP TV
 data That = That deriving Show
 data VP   = Laughed | Cheered | Shuddered 
           | VP1 TV NP | VP2 DV NP NP
-          | VP3 AV To INF
+          | VP3 AV To INF -- | VP4 TV NP In NP
           deriving Show 
 data TV   = Loved   | Admired | Helped 
-          | Defeated | Caught
+          | Defeated | Caught | Is
           deriving Show 
 
 data DV   = Gave deriving Show
@@ -60,6 +60,7 @@ data INF  = Laugh | Sheer | Shudder | INF TINF NP deriving Show
 data TINF = Love | Admire | Help | Defeat | Catch 
             deriving Show 
 data To   = To deriving Show
+--data In   = In deriving Show
 
 -- Section 4.4
 -- Formulas of propositional logic
