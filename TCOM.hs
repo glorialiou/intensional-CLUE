@@ -80,6 +80,11 @@ intCN Wizard   = \ x -> wizard x
 intCN Sword    = \ x -> sword x
 intCN Dagger   = \ x -> dagger x
 
+--ADDED
+intCN Killer     = \ x -> killer x
+intCN Weapon     = \ x -> weapon x
+intCN Crimescene = \ x -> crimescene x
+
 -- Interpret determiners in the form D A B
 intDET :: DET -> 
          (Entity -> Bool) -> (Entity -> Bool) -> Bool
