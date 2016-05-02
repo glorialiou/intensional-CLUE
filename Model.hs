@@ -64,6 +64,8 @@ giant    = list2OnePlacePred [T]
 wizard   = list2OnePlacePred [W,V]
 sword    = list2OnePlacePred [F]
 dagger   = list2OnePlacePred [X]
+-- ADDED STUDENT
+student = [S]
 
 -- Predicates defined from earlier predicates
 child, person, man, woman, male, female, thing :: OnePlacePred
@@ -84,16 +86,24 @@ laugh   = list2OnePlacePred [A,G,E]
 cheer   = list2OnePlacePred [M,D]
 shudder = list2OnePlacePred [S]
 
+-- SHOULD I GET RID OF THIS
+killer = list2OnePlacePred [K]
+crimescene = list2OnePlacePred [C]
+weapon = list2OnePlacePred [W] 
+
 -- Sample two place predicates representing transitive verbs
 love, admire, help, defeat :: TwoPlacePred
 -- characteristic functions for binary relations for transitive verbs
 love   = curry (`elem` [(Y,E),(B,S),(R,S)])
+is = curry (`elem` [(K,K),(W,W),(C,C)]) 
+--kill   = curry (`elem` [(K,S)])
 admire = curry (`elem` [(x,G) | x <- entities, person x])
 help   = curry (`elem` [(W,W),(V,V),(S,B),(D,M)])
 defeat = curry (`elem` [(x,y) | x <- entities, 
                                 y <- entities,
                                 dwarf x && giant y]
                     ++ [(A,W),(A,V)])
+        
 
 -- Transform a function that takes three arguments into its curried form
 curry3 :: ((a,b,c) -> d) -> a -> b -> c -> d
