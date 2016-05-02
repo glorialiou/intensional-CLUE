@@ -165,446 +165,440 @@ genCorrectWorld _ = W47
 --  -- PROFESSORS -- -- 
 --Bruce
 iBruce :: IEntity
-iBruce W1 = killer
-iBruce W2 = killer
-iBruce W3 = killer
-iBruce W4 = killer
-iBruce W5 = killer
-iBruce W6 = killer
-iBruce W7 = killer
-iBruce W8 = killer
-iBruce W9 = killer
-iBruce W10 = killer
-iBruce W11 = killer
-iBruce W12 = killer
-iBruce W13 = killer
-iBruce W14 = killer
-iBruce W15 = killer
-iBruce W16 = killer
-iBruce W17 = killer
-iBruce W18 = killer
-iBruce W19 = killer
-iBruce W20 = killer
-iBruce W21 = killer
-iBruce W22 = killer
-iBruce W23 = killer
-iBruce W24 = killer
-iBruce W25 = killer
+iBruce W1 = bruce'
+iBruce W2 = bruce'
+iBruce W3 = bruce'
+iBruce W4 = bruce'
+iBruce W5 = bruce'
+iBruce W6 = bruce'
+iBruce W7 = bruce'
+iBruce W8 = bruce'
+iBruce W9 = bruce'
+iBruce W10 = bruce'
+iBruce W11 = bruce'
+iBruce W12 = bruce'
+iBruce W13 = bruce'
+iBruce W14 = bruce'
+iBruce W15 = bruce'
+iBruce W16 = bruce'
+iBruce W17 = bruce'
+iBruce W18 = bruce'
+iBruce W19 = bruce'
+iBruce W20 = bruce'
+iBruce W21 = bruce'
+iBruce W22 = bruce'
+iBruce W23 = bruce'
+iBruce W24 = bruce'
+iBruce W25 = bruce'
 iBruce _ = bruce
-
+ 
 --Chen
 iChen :: IEntity
-iChen W26 = killer
-iChen W27 = killer
-iChen W28 = killer
-iChen W29 = killer
-iChen W30 = killer
-iChen W31 = killer
-iChen W32 = killer
-iChen W33 = killer
-iChen W34 = killer
-iChen W35 = killer
-iChen W36 = killer
-iChen W37 = killer
-iChen W38 = killer
-iChen W39 = killer
-iChen W40 = killer
-iChen W41 = killer
-iChen W42 = killer
-iChen W43 = killer
-iChen W44 = killer
-iChen W45 = killer
-iChen W46 = killer
-iChen W47 = killer
-iChen W48 = killer
-iChen W49 = killer
-iChen W50 = killer
+iChen W26 = chen'
+iChen W27 = chen'
+iChen W28 = chen'
+iChen W29 = chen'
+iChen W30 = chen'
+iChen W31 = chen'
+iChen W32 = chen'
+iChen W33 = chen'
+iChen W34 = chen'
+iChen W35 = chen'
+iChen W36 = chen'
+iChen W37 = chen'
+iChen W38 = chen'
+iChen W39 = chen'
+iChen W40 = chen'
+iChen W41 = chen'
+iChen W42 = chen'
+iChen W43 = chen'
+iChen W44 = chen'
+iChen W45 = chen'
+iChen W46 = chen'
+iChen W47 = chen'
+iChen W48 = chen'
+iChen W49 = chen'
+iChen W50 = chen'
 iChen _ = chen
 
 --Greenberg
 iGreenberg :: IEntity
-iGreenberg W51 = killer
-iGreenberg W52 = killer
-iGreenberg W53 = killer
-iGreenberg W54 = killer
-iGreenberg W55 = killer
-iGreenberg W56 = killer
-iGreenberg W57 = killer
-iGreenberg W58 = killer
-iGreenberg W59 = killer
-iGreenberg W60 = killer
-iGreenberg W61 = killer
-iGreenberg W62 = killer
-iGreenberg W63 = killer
-iGreenberg W64 = killer
-iGreenberg W65 = killer
-iGreenberg W66 = killer
-iGreenberg W67 = killer
-iGreenberg W68 = killer
-iGreenberg W69 = killer
-iGreenberg W70 = killer
-iGreenberg W71 = killer
-iGreenberg W72 = killer
-iGreenberg W73 = killer
-iGreenberg W74 = killer
-iGreenberg W75 = killer
+iGreenberg W51 = greenberg'
+iGreenberg W52 = greenberg'
+iGreenberg W53 = greenberg'
+iGreenberg W54 = greenberg'
+iGreenberg W55 = greenberg'
+iGreenberg W56 = greenberg'
+iGreenberg W57 = greenberg'
+iGreenberg W58 = greenberg'
+iGreenberg W59 = greenberg'
+iGreenberg W60 = greenberg'
+iGreenberg W61 = greenberg'
+iGreenberg W62 = greenberg'
+iGreenberg W63 = greenberg'
+iGreenberg W64 = greenberg'
+iGreenberg W65 = greenberg'
+iGreenberg W66 = greenberg'
+iGreenberg W67 = greenberg'
+iGreenberg W68 = greenberg'
+iGreenberg W69 = greenberg'
+iGreenberg W70 = greenberg'
+iGreenberg W71 = greenberg'
+iGreenberg W72 = greenberg'
+iGreenberg W73 = greenberg'
+iGreenberg W74 = greenberg'
+iGreenberg W75 = greenberg'
 iGreenberg _ = greenberg
 
 --Kauchak
 iKauchak :: IEntity
-iKauchak W76 = killer
-iKauchak W77 = killer
-iKauchak W78 = killer
-iKauchak W79 = killer
-iKauchak W80 = killer
-iKauchak W81 = killer
-iKauchak W82 = killer
-iKauchak W83 = killer
-iKauchak W84 = killer
-iKauchak W85 = killer
-iKauchak W86 = killer
-iKauchak W87 = killer
-iKauchak W88 = killer
-iKauchak W89 = killer
-iKauchak W90 = killer
-iKauchak W91 = killer
-iKauchak W92 = killer
-iKauchak W93 = killer
-iKauchak W94 = killer
-iKauchak W95 = killer
-iKauchak W96 = killer
-iKauchak W97 = killer
-iKauchak W98 = killer
-iKauchak W99 = killer
-iKauchak W100 = killer
+iKauchak W76 = kauchak'
+iKauchak W77 = kauchak'
+iKauchak W78 = kauchak'
+iKauchak W79 = kauchak'
+iKauchak W80 = kauchak'
+iKauchak W81 = kauchak'
+iKauchak W82 = kauchak'
+iKauchak W83 = kauchak'
+iKauchak W84 = kauchak'
+iKauchak W85 = kauchak'
+iKauchak W86 = kauchak'
+iKauchak W87 = kauchak'
+iKauchak W88 = kauchak'
+iKauchak W89 = kauchak'
+iKauchak W90 = kauchak'
+iKauchak W91 = kauchak'
+iKauchak W92 = kauchak'
+iKauchak W93 = kauchak'
+iKauchak W94 = kauchak'
+iKauchak W95 = kauchak'
+iKauchak W96 = kauchak'
+iKauchak W97 = kauchak'
+iKauchak W98 = kauchak'
+iKauchak W99 = kauchak'
+iKauchak W100 = kauchak'
 iKauchak _ = kauchak
 
 --Wu
 iWu :: IEntity
-iWu W101 = killer
-iWu W102 = killer
-iWu W103 = killer
-iWu W104 = killer
-iWu W105 = killer
-iWu W106 = killer
-iWu W107 = killer
-iWu W108 = killer
-iWu W109 = killer
-iWu W110 = killer
-iWu W111 = killer
-iWu W112 = killer
-iWu W113 = killer
-iWu W114 = killer
-iWu W115 = killer
-iWu W116 = killer
-iWu W117 = killer
-iWu W118 = killer
-iWu W119 = killer
-iWu W120 = killer
-iWu W121 = killer
-iWu W122 = killer
-iWu W123 = killer
-iWu W124 = killer
-iWu W125 = killer
+iWu W101 = wu'
+iWu W102 = wu'
+iWu W103 = wu'
+iWu W104 = wu'
+iWu W105 = wu'
+iWu W106 = wu'
+iWu W107 = wu'
+iWu W108 = wu'
+iWu W109 = wu'
+iWu W110 = wu'
+iWu W111 = wu'
+iWu W112 = wu'
+iWu W113 = wu'
+iWu W114 = wu'
+iWu W115 = wu'
+iWu W116 = wu'
+iWu W117 = wu'
+iWu W118 = wu'
+iWu W119 = wu'
+iWu W120 = wu'
+iWu W121 = wu'
+iWu W122 = wu'
+iWu W123 = wu'
+iWu W124 = wu'
+iWu W125 = wu'
 iWu _ = wu
 
 -- -- CLASSES -- --
 --CS 52
 iCS52 :: IEntity
-iCS52 W1 = weapon 
-iCS52 W2 = weapon
-iCS52 W3 = weapon
-iCS52 W4 = weapon
-iCS52 W5 = weapon
-iCS52 W26 = weapon
-iCS52 W27 = weapon
-iCS52 W28 = weapon
-iCS52 W29 = weapon
-iCS52 W30 = weapon
-iCS52 W51 = weapon
-iCS52 W52 = weapon
-iCS52 W53 = weapon
-iCS52 W54 = weapon
-iCS52 W55 = weapon
-iCS52 W76 = weapon
-iCS52 W77 = weapon
-iCS52 W78 = weapon
-iCS52 W79 = weapon
-iCS52 W80 = weapon
-iCS52 W101 = weapon
-iCS52 W102 = weapon
-iCS52 W103 = weapon
-iCS52 W104 = weapon
-iCS52 W105 = weapon
+iCS52 W1 = cs52' 
+iCS52 W2 = cs52'
+iCS52 W3 = cs52'
+iCS52 W4 = cs52'
+iCS52 W5 = cs52'
+iCS52 W26 = cs52'
+iCS52 W27 = cs52'
+iCS52 W28 = cs52'
+iCS52 W29 = cs52'
+iCS52 W30 = cs52'
+iCS52 W51 = cs52'
+iCS52 W52 = cs52'
+iCS52 W53 = cs52'
+iCS52 W54 = cs52'
+iCS52 W55 = cs52'
+iCS52 W76 = cs52'
+iCS52 W77 = cs52'
+iCS52 W78 = cs52'
+iCS52 W79 = cs52'
+iCS52 W80 = cs52'
+iCS52 W101 = cs52'
+iCS52 W102 = cs52'
+iCS52 W103 = cs52'
+iCS52 W104 = cs52'
+iCS52 W105 = cs52'
 iCS52 _ = cs52
 
 --CS 62
 iCS62 :: IEntity
-iCS62 W6 = weapon
-iCS62 W7 = weapon
-iCS62 W8 = weapon
-iCS62 W9 = weapon
-iCS62 W10 = weapon
-iCS62 W31 = weapon
-iCS62 W32 = weapon
-iCS62 W33 = weapon
-iCS62 W34 = weapon
-iCS62 W35 = weapon
-iCS62 W56 = weapon
-iCS62 W57 = weapon
-iCS62 W58 = weapon
-iCS62 W59 = weapon
-iCS62 W60 = weapon
-iCS62 W81 = weapon
-iCS62 W82 = weapon
-iCS62 W83 = weapon
-iCS62 W84 = weapon
-iCS62 W85 = weapon
-iCS62 W106 = weapon
-iCS62 W107 = weapon
-iCS62 W108 = weapon
-iCS62 W109 = weapon
-iCS62 W110 = weapon
+iCS62 W6 = cs62'
+iCS62 W7 = cs62'
+iCS62 W8 = cs62'
+iCS62 W9 = cs62'
+iCS62 W10 = cs62'
+iCS62 W31 = cs62'
+iCS62 W32 = cs62'
+iCS62 W33 = cs62'
+iCS62 W34 = cs62'
+iCS62 W35 = cs62'
+iCS62 W56 = cs62'
+iCS62 W57 = cs62'
+iCS62 W58 = cs62'
+iCS62 W59 = cs62'
+iCS62 W60 = cs62'
+iCS62 W81 = cs62'
+iCS62 W82 = cs62'
+iCS62 W83 = cs62'
+iCS62 W84 = cs62'
+iCS62 W85 = cs62'
+iCS62 W106 = cs62'
+iCS62 W107 = cs62'
+iCS62 W108 = cs62'
+iCS62 W109 = cs62'
+iCS62 W110 = cs62'
 iCS62 _ = cs62
 
---CS 81
-iCS81 :: IEntity
-iCS81 W11 = weapon
-iCS81 W12 = weapon
-iCS81 W13 = weapon
-iCS81 W14 = weapon
-iCS81 W15 = weapon
-iCS81 W36 = weapon
-iCS81 W37 = weapon
-iCS81 W38 = weapon
-iCS81 W39 = weapon
-iCS81 W40 = weapon
-iCS81 W61 = weapon
-iCS81 W62 = weapon
-iCS81 W63 = weapon
-iCS81 W64 = weapon
-iCS81 W65 = weapon
-iCS81 W86 = weapon
-iCS81 W87 = weapon
-iCS81 W88 = weapon
-iCS81 W89 = weapon
-iCS81 W90 = weapon
-iCS81 W111 = weapon
-iCS81 W112 = weapon
-iCS81 W113 = weapon
-iCS81 W114 = weapon
-iCS81 W115 = weapon
+iCS81 W15 = cs81'
+iCS81 W36 = cs81'
+iCS81 W37 = cs81'
+iCS81 W38 = cs81'
+iCS81 W39 = cs81'
+iCS81 W40 = cs81'
+iCS81 W61 = cs81'
+iCS81 W62 = cs81'
+iCS81 W63 = cs81'
+iCS81 W64 = cs81'
+iCS81 W65 = cs81'
+iCS81 W86 = cs81'
+iCS81 W87 = cs81'
+iCS81 W88 = cs81'
+iCS81 W89 = cs81'
+iCS81 W90 = cs81'
+iCS81 W111 = cs81'
+iCS81 W112 = cs81'
+iCS81 W113 = cs81'
+iCS81 W114 = cs81'
+iCS81 W115 = cs81'
 iCS81 _ = cs81
 
 --Systems
 iSystems :: IEntity
-iSystems W16 = weapon
-iSystems W17 = weapon
-iSystems W18 = weapon
-iSystems W19 = weapon
-iSystems W20 = weapon
-iSystems W41 = weapon
-iSystems W42 = weapon
-iSystems W43 = weapon
-iSystems W44 = weapon
-iSystems W45 = weapon
-iSystems W66 = weapon
-iSystems W67 = weapon
-iSystems W68 = weapon
-iSystems W69 = weapon
-iSystems W70 = weapon
-iSystems W91 = weapon
-iSystems W92 = weapon
-iSystems W93 = weapon
-iSystems W94 = weapon
-iSystems W95 = weapon
-iSystems W116 = weapon
-iSystems W117 = weapon
-iSystems W118 = weapon
-iSystems W119 = weapon
-iSystems W120 = weapon
+iSystems W16 = systems'
+iSystems W17 = systems'
+iSystems W18 = systems'
+iSystems W19 = systems'
+iSystems W20 = systems'
+iSystems W41 = systems'
+iSystems W42 = systems'
+iSystems W43 = systems'
+iSystems W44 = systems'
+iSystems W45 = systems'
+iSystems W66 = systems'
+iSystems W67 = systems'
+iSystems W68 = systems'
+iSystems W69 = systems'
+iSystems W70 = systems'
+iSystems W91 = systems'
+iSystems W92 = systems'
+iSystems W93 = systems'
+iSystems W94 = systems'
+iSystems W95 = systems'
+iSystems W116 = systems'
+iSystems W117 = systems'
+iSystems W118 = systems'
+iSystems W119 = systems'
+iSystems W120 = systems'
 iSystems _ = systems
 
 --Algs
 iAlgs :: IEntity
-iAlgs W21 = weapon
-iAlgs W22 = weapon
-iAlgs W23 = weapon
-iAlgs W24 = weapon
-iAlgs W25 = weapon
-iAlgs W46 = weapon
-iAlgs W47 = weapon
-iAlgs W48 = weapon
-iAlgs W49 = weapon
-iAlgs W50 = weapon
-iAlgs W71 = weapon
-iAlgs W72 = weapon
-iAlgs W73 = weapon
-iAlgs W74 = weapon
-iAlgs W75 = weapon
-iAlgs W96 = weapon
-iAlgs W97 = weapon
-iAlgs W98 = weapon
-iAlgs W99 = weapon
-iAlgs W100 = weapon
-iAlgs W121 = weapon
-iAlgs W122 = weapon
-iAlgs W123 = weapon
-iAlgs W124 = weapon
-iAlgs W125 = weapon
+iAlgs W21 = algs'
+iAlgs W22 = algs'
+iAlgs W23 = algs'
+iAlgs W24 = algs'
+iAlgs W25 = algs'
+iAlgs W46 = algs'
+iAlgs W47 = algs'
+iAlgs W48 = algs'
+iAlgs W49 = algs'
+iAlgs W50 = algs'
+iAlgs W71 = algs'
+iAlgs W72 = algs'
+iAlgs W73 = algs'
+iAlgs W74 = algs'
+iAlgs W75 = algs'
+iAlgs W96 = algs'
+iAlgs W97 = algs'
+iAlgs W98 = algs'
+iAlgs W99 = algs'
+iAlgs W100 = algs'
+iAlgs W121 = algs'
+iAlgs W122 = algs'
+iAlgs W123 = algs'
+iAlgs W124 = algs'
+iAlgs W125 = algs'
 iAlgs _ = algs
+
 
 -- -- LOCATIONS -- --
 
 --Edmunds
 --iEdmunds ::  World -> Entity -> Bool
-iEdmunds W1 = crimescene 
-iEdmunds W6 = crimescene
-iEdmunds W11 = crimescene
-iEdmunds W16 = crimescene
-iEdmunds W21 = crimescene
-iEdmunds W26 = crimescene
-iEdmunds W31 = crimescene
-iEdmunds W36 = crimescene
-iEdmunds W41 = crimescene
-iEdmunds W46 = crimescene
-iEdmunds W51 = crimescene
-iEdmunds W56 = crimescene
-iEdmunds W61 = crimescene
-iEdmunds W66 = crimescene
-iEdmunds W71 = crimescene
-iEdmunds W76 = crimescene
-iEdmunds W81 = crimescene
-iEdmunds W86 = crimescene
-iEdmunds W91 = crimescene
-iEdmunds W96 = crimescene
-iEdmunds W101 = crimescene
-iEdmunds W106 = crimescene
-iEdmunds W111 = crimescene
-iEdmunds W116 = crimescene
-iEdmunds W121 = crimescene
+iEdmunds W1 = edmunds' 
+iEdmunds W6 = edmunds'
+iEdmunds W11 = edmunds'
+iEdmunds W16 = edmunds'
+iEdmunds W21 = edmunds'
+iEdmunds W26 = edmunds'
+iEdmunds W31 = edmunds'
+iEdmunds W36 = edmunds'
+iEdmunds W41 = edmunds'
+iEdmunds W46 = edmunds'
+iEdmunds W51 = edmunds'
+iEdmunds W56 = edmunds'
+iEdmunds W61 = edmunds'
+iEdmunds W66 = edmunds'
+iEdmunds W71 = edmunds'
+iEdmunds W76 = edmunds'
+iEdmunds W81 = edmunds'
+iEdmunds W86 = edmunds'
+iEdmunds W91 = edmunds'
+iEdmunds W96 = edmunds'
+iEdmunds W101 = edmunds'
+iEdmunds W106 = edmunds'
+iEdmunds W111 = edmunds'
+iEdmunds W116 = edmunds'
+iEdmunds W121 = edmunds'
 iEdmunds _ = edmunds
 
 
 --Lincoln
 --iLincoln :: IEntity
-iLincoln W2 = crimescene
-iLincoln W7 = crimescene
-iLincoln W12 = crimescene
-iLincoln W17 = crimescene
-iLincoln W22 = crimescene
-iLincoln W27 = crimescene
-iLincoln W32 = crimescene
-iLincoln W37 = crimescene
-iLincoln W42 = crimescene
-iLincoln W47 = crimescene
-iLincoln W52 = crimescene
-iLincoln W57 = crimescene
-iLincoln W62 = crimescene
-iLincoln W67 = crimescene
-iLincoln W72 = crimescene
-iLincoln W77 = crimescene
-iLincoln W82 = crimescene
-iLincoln W87 = crimescene
-iLincoln W92 = crimescene
-iLincoln W97 = crimescene
-iLincoln W102 = crimescene
-iLincoln W107 = crimescene
-iLincoln W112 = crimescene
-iLincoln W117 = crimescene
-iLincoln W122 = crimescene
+iLincoln W2 = lincoln'
+iLincoln W7 = lincoln'
+iLincoln W12 = lincoln'
+iLincoln W17 = lincoln'
+iLincoln W22 = lincoln'
+iLincoln W27 = lincoln'
+iLincoln W32 = lincoln'
+iLincoln W37 = lincoln'
+iLincoln W42 = lincoln'
+iLincoln W47 = lincoln'
+iLincoln W52 = lincoln'
+iLincoln W57 = lincoln'
+iLincoln W62 = lincoln'
+iLincoln W67 = lincoln'
+iLincoln W72 = lincoln'
+iLincoln W77 = lincoln'
+iLincoln W82 = lincoln'
+iLincoln W87 = lincoln'
+iLincoln W92 = lincoln'
+iLincoln W97 = lincoln'
+iLincoln W102 = lincoln'
+iLincoln W107 = lincoln'
+iLincoln W112 = lincoln'
+iLincoln W117 = lincoln'
+iLincoln W122 = lincoln'
 iLincoln _ = lincoln
 
 
 --Skyspace
 --iSkyspace :: IEntity
-iSkyspace W3 = crimescene
-iSkyspace W8 = crimescene
-iSkyspace W13 = crimescene
-iSkyspace W18 = crimescene
-iSkyspace W23 = crimescene
-iSkyspace W28 = crimescene
-iSkyspace W33 = crimescene
-iSkyspace W38 = crimescene
-iSkyspace W43 = crimescene
-iSkyspace W48 = crimescene
-iSkyspace W53 = crimescene
-iSkyspace W58 = crimescene
-iSkyspace W63 = crimescene
-iSkyspace W68 = crimescene
-iSkyspace W73 = crimescene
-iSkyspace W78 = crimescene
-iSkyspace W83 = crimescene
-iSkyspace W88 = crimescene
-iSkyspace W93 = crimescene
-iSkyspace W98 = crimescene
-iSkyspace W103 = crimescene
-iSkyspace W108 = crimescene
-iSkyspace W113 = crimescene
-iSkyspace W118 = crimescene
-iSkyspace W123 = crimescene
+iSkyspace W3 = skyspace'
+iSkyspace W8 = skyspace'
+iSkyspace W13 = skyspace'
+iSkyspace W18 = skyspace'
+iSkyspace W23 = skyspace'
+iSkyspace W28 = skyspace'
+iSkyspace W33 = skyspace'
+iSkyspace W38 = skyspace'
+iSkyspace W43 = skyspace'
+iSkyspace W48 = skyspace'
+iSkyspace W53 = skyspace'
+iSkyspace W58 = skyspace'
+iSkyspace W63 = skyspace'
+iSkyspace W68 = skyspace'
+iSkyspace W73 = skyspace'
+iSkyspace W78 = skyspace'
+iSkyspace W83 = skyspace'
+iSkyspace W88 = skyspace'
+iSkyspace W93 = skyspace'
+iSkyspace W98 = skyspace'
+iSkyspace W103 = skyspace'
+iSkyspace W108 = skyspace'
+iSkyspace W113 = skyspace'
+iSkyspace W118 = skyspace'
+iSkyspace W123 = skyspace'
 iSkyspace _ = skyspace
 
 
 --Frary
 --iFrary :: IEntity
-iFrary W4 = crimescene
-iFrary W9 = crimescene
-iFrary W14 = crimescene
-iFrary W19 = crimescene
-iFrary W24 = crimescene
-iFrary W29 = crimescene
-iFrary W34 = crimescene
-iFrary W39 = crimescene
-iFrary W44 = crimescene
-iFrary W49 = crimescene
-iFrary W54 = crimescene
-iFrary W59 = crimescene
-iFrary W64 = crimescene
-iFrary W69 = crimescene
-iFrary W74 = crimescene
-iFrary W79 = crimescene
-iFrary W84 = crimescene
-iFrary W89 = crimescene
-iFrary W94 = crimescene
-iFrary W99 = crimescene
-iFrary W104 = crimescene
-iFrary W109 = crimescene
-iFrary W114 = crimescene
-iFrary W119 = crimescene
-iFrary W124 = crimescene
+iFrary W4 = frary'
+iFrary W9 = frary'
+iFrary W14 = frary'
+iFrary W19 = frary'
+iFrary W24 = frary'
+iFrary W29 = frary'
+iFrary W34 = frary'
+iFrary W39 = frary'
+iFrary W44 = frary'
+iFrary W49 = frary'
+iFrary W54 = frary'
+iFrary W59 = frary'
+iFrary W64 = frary'
+iFrary W69 = frary'
+iFrary W74 = frary'
+iFrary W79 = frary'
+iFrary W84 = frary'
+iFrary W89 = frary'
+iFrary W94 = frary'
+iFrary W99 = frary'
+iFrary W104 = frary'
+iFrary W109 = frary'
+iFrary W114 = frary'
+iFrary W119 = frary'
+iFrary W124 = frary'
 iFrary _ = frary
 
 
 --Frank
 --iFrank :: IEntity
-iFrank W5 = crimescene
-iFrank W10 = crimescene
-iFrank W15 = crimescene
-iFrank W20 = crimescene
-iFrank W25 = crimescene
-iFrank W30 = crimescene
-iFrank W35 = crimescene
-iFrank W40 = crimescene
-iFrank W45 = crimescene
-iFrank W50 = crimescene
-iFrank W55 = crimescene
-iFrank W60 = crimescene
-iFrank W65 = crimescene
-iFrank W70 = crimescene
-iFrank W75 = crimescene
-iFrank W80 = crimescene
-iFrank W85 = crimescene
-iFrank W90 = crimescene
-iFrank W95 = crimescene
-iFrank W100 = crimescene
-iFrank W105 = crimescene
-iFrank W110 = crimescene
-iFrank W115 = crimescene
-iFrank W120 = crimescene
-iFrank W125 = crimescene
+iFrank W5 = frank'
+iFrank W10 = frank'
+iFrank W15 = frank'
+iFrank W20 = frank'
+iFrank W25 = frank'
+iFrank W30 = frank'
+iFrank W35 = frank'
+iFrank W40 = frank'
+iFrank W45 = frank'
+iFrank W50 = frank'
+iFrank W55 = frank'
+iFrank W60 = frank'
+iFrank W65 = frank'
+iFrank W70 = frank'
+iFrank W75 = frank'
+iFrank W80 = frank'
+iFrank W85 = frank'
+iFrank W90 = frank'
+iFrank W95 = frank'
+iFrank W100 = frank'
+iFrank W105 = frank'
+iFrank W110 = frank'
+iFrank W115 = frank'
+iFrank W120 = frank'
+iFrank W125 = frank'
 iFrank _ = frank
-
 
 type IEntity = World -> Entity
 type IBool   = World -> Bool
@@ -624,6 +618,13 @@ iPerson   W1 = person
 iPerson   W2 = person'
 iPerson   W3 = person'
 
+--ADDED KILLER
+iKiller _ = killer
+iWeapon _ = weapon
+iCrimescene _ = crimescene
+
+iIs _ = is
+
 iLaugh, iShudder :: World -> Entity -> Bool
 iLaugh W1 =  laugh 
 iLaugh W2 =  laugh'  
@@ -641,8 +642,6 @@ iSent :: Sent -> IBool
 iSent (Sent np vp) = iNP np (iVP vp)
 
 iNP :: NP -> (IEntity -> IBool) -> IBool
-
-
 iNP SnowWhite = \ p -> p iSnowWhite
 ----------------------------- MORE CODE FOR CLUE --------------------------------------
 --Profs
@@ -682,16 +681,38 @@ iDET Every p q = \ i -> all (\x -> q (\j -> x) i)
 iDET No p q = \ i -> not (any (\x -> q (\j -> x) i) 
       (filter (\x -> p (\j -> x) i) entities))
 
+--ADDED THE
+iDET The p q = \ i -> singleton (filter (\x -> p (\j -> x) i) entities) && (\x -> q (\j ->x) i) (head (filter (\x -> p (\j -> x) i) entities))
+       where
+          --plist = (filter (\x -> p (\j -> x) i) entities)
+          singleton [x] = True
+          singleton _ = False
+
+--intTV Defeated = \ x y -> defeat x y
+iTV Is = \ x y i -> iIs i (x i) (y i)  --  \ subj obj i -> iIs i (subj obj i)
+
 iVP :: VP -> IEntity -> IBool
 iVP Laughed   = \ x i -> iLaugh i (x i) 
-iVP Shuddered = \ x i -> iShudder i (x i) 
+iVP Shuddered = \ x i -> iShudder i (x i)
 
-iVP (VP3 attitude to inf) = iAV attitude (iINF inf) 
+--intVP :: VP -> Entity -> Bool 
+--intVP Laughed   = \ x -> laugh x
+--intVP Cheered   = \ x -> cheer x 
+--intVP Shuddered = \ x -> shudder x 
+
+--val = (\ obj subj i -> iTV tv subj obj i) 
+-- interpret verb phrases that are transitive verbs with object
+iVP (VP1 tv np) = \ subj -> (iNP np) (\ obj i -> iTV tv subj obj i)
+
+iVP (VP3 attitude to inf) = iAV attitude (iINF inf)
 
 iCN :: CN -> IEntity -> IBool 
 iCN Girl = \ x i -> iGirl i (x i) 
 iCN Princess = \ x i -> iPrincess i (x i)
 
+iCN Killer = \ x i -> iKiller i (x i)
+iCN Weapon = \ x i -> iWeapon i (x i)
+iCN Crimescene = \ x i -> iCrimescene i (x i)
 
 iRCN (RCN3 adj cn) = iADJ adj (iCN cn)
 
@@ -699,10 +720,14 @@ eval1 = iSent (Sent SnowWhite Laughed) W1
 eval2 = iSent (Sent SnowWhite Laughed) W2
 eval3 = iSent (Sent Someone Shuddered) W1
 eval4 = iSent (Sent Someone Shuddered) W2
-eval5 = iSent (Sent (NP1 Every Girl) Shuddered) W1
+eval5 = iSent (Sent (NP1 Every Killer) Shuddered) W1
 eval6 = iSent (Sent (NP1 Every Girl) Shuddered) W2
-eval7 = iSent (Sent (NP1 Some Girl) Shuddered) W1
+eval7 = iSent (Sent (NP1 The Weapon) Shuddered) W1
 eval8 = iSent (Sent (NP1 Some Girl) Shuddered) W2
+
+--eval12 = iSent (Sent SnowWhite 
+  --(VP3 Wanted To (INF Catch (NP1 Some Girl)))) W1
+eval47 = iSent (Sent Bruce (VP1 Is (NP1 The Killer))) W1
 
 iADJ :: ADJ -> (IEntity -> IBool) -> IEntity -> IBool
 iADJ Fake = \ p x i -> 
@@ -735,8 +760,8 @@ iAV Hoped  p = \ x i ->
 
 eval12 = iSent (Sent SnowWhite 
   (VP3 Wanted To (INF Catch (NP1 Some Girl)))) W1
-eval13 = iSent (Sent SnowWhite 
-  (VP3 Wanted To (INF Catch (NP1 No Girl)))) W2
+eval13 = iSent (Sent Bruce
+  (VP3 Wanted To (INF Catch (NP1 No Killer)))) W2
 
 data Judgement = IsTrue Sent 
                | IsNec  Sent 
