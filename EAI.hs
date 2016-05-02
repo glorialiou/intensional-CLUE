@@ -162,7 +162,7 @@ genCorrectWorld 124 = W124
 genCorrectWorld 125 = W125
 genCorrectWorld _ = W47
 
---  -- PROFESSORS -- -- 
+------ PROFESSORS ------ 
 --Bruce
 iBruce :: IEntity
 iBruce W1 = bruce'
@@ -308,7 +308,7 @@ iWu W124 = wu'
 iWu W125 = wu'
 iWu _ = wu
 
--- -- CLASSES -- --
+------ CLASSES ------
 --CS 52
 iCS52 :: IEntity
 iCS52 W1 = cs52' 
@@ -367,6 +367,7 @@ iCS62 W109 = cs62'
 iCS62 W110 = cs62'
 iCS62 _ = cs62
 
+--CS 81
 iCS81 W15 = cs81'
 iCS81 W36 = cs81'
 iCS81 W37 = cs81'
@@ -449,10 +450,9 @@ iAlgs W125 = algs'
 iAlgs _ = algs
 
 
--- -- LOCATIONS -- --
-
+------ LOCATIONS ------
 --Edmunds
---iEdmunds ::  World -> Entity -> Bool
+iEdmunds :: IEntity
 iEdmunds W1 = edmunds' 
 iEdmunds W6 = edmunds'
 iEdmunds W11 = edmunds'
@@ -480,9 +480,8 @@ iEdmunds W116 = edmunds'
 iEdmunds W121 = edmunds'
 iEdmunds _ = edmunds
 
-
 --Lincoln
---iLincoln :: IEntity
+iLincoln :: IEntity
 iLincoln W2 = lincoln'
 iLincoln W7 = lincoln'
 iLincoln W12 = lincoln'
@@ -510,9 +509,8 @@ iLincoln W117 = lincoln'
 iLincoln W122 = lincoln'
 iLincoln _ = lincoln
 
-
 --Skyspace
---iSkyspace :: IEntity
+iSkyspace :: IEntity
 iSkyspace W3 = skyspace'
 iSkyspace W8 = skyspace'
 iSkyspace W13 = skyspace'
@@ -540,9 +538,8 @@ iSkyspace W118 = skyspace'
 iSkyspace W123 = skyspace'
 iSkyspace _ = skyspace
 
-
 --Frary
---iFrary :: IEntity
+iFrary :: IEntity
 iFrary W4 = frary'
 iFrary W9 = frary'
 iFrary W14 = frary'
@@ -570,9 +567,8 @@ iFrary W119 = frary'
 iFrary W124 = frary'
 iFrary _ = frary
 
-
 --Frank
---iFrank :: IEntity
+iFrank :: IEntity
 iFrank W5 = frank'
 iFrank W10 = frank'
 iFrank W15 = frank'
@@ -602,6 +598,7 @@ iFrank _ = frank
 
 type IEntity = World -> Entity
 type IBool   = World -> Bool
+
 iSnowWhite :: IEntity
 iSnowWhite W1 = snowWhite
 iSnowWhite W2 = snowWhite'
