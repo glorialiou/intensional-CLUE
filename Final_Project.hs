@@ -1,8 +1,8 @@
+
 --Melissa Grueter
 --Gloria Liou
 
 module CLUE where 
-
 import Data.Word
 import Data.IORef
 import System.Random
