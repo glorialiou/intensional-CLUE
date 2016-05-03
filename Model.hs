@@ -1,8 +1,13 @@
+--Melissa Grueter
+--Gloria Liou
+
 module Model where 
 
 import Data.List
 
--- Section 6.3
+-- NOTE: Where our code is mixed in with code from the text, we have annotated
+-- our additions as in the example below, to make it easier to distinguish.
+-- *** CLUE: Added ...
 
 -- Datatype for a domain of values
 data Entity = A | B | C | D | E | F | G
@@ -15,26 +20,34 @@ data Entity = A | B | C | D | E | F | G
 entities :: [Entity]
 entities =  [minBound..maxBound] 
 
--- constants that will be interpreted as elements of Entity
-snowWhite, alice, dorothy, goldilocks, littleMook, atreyu, bruce, chen, greenberg, kauchak, wu, cs52, cs62, cs81, systems, algs, edmunds, lincoln, skyspace, frary, frank :: Entity
 
---WE SHOULD COME BACK TO THESE AND SEE IF WE NEED TO COME UP WITH BETTER ENTITIES 
+-- constants that will be interpreted as elements of Entity
+-- *** CLUE: Added constants for profs, courses, and locations
+snowWhite, alice, dorothy, goldilocks, littleMook, atreyu, bruce, chen,
+           greenberg, kauchak, wu, cs52, cs62, cs81, systems, algs, edmunds,
+           lincoln, skyspace, frary, frank :: Entity
 snowWhite  = S
 alice      = A
 dorothy    = D
 goldilocks = G 
 littleMook = M
 atreyu     = Y
+
+--Professors 
 bruce = P
 chen = P
 greenberg = P
 kauchak = P
 wu = P
+
+--Courses
 cs52 = C
 cs62 = C
 cs81 = C
 systems = C
 algs = C
+
+--Locations
 edmunds = L
 lincoln = L
 skyspace = L
@@ -64,8 +77,6 @@ giant    = list2OnePlacePred [T]
 wizard   = list2OnePlacePred [W,V]
 sword    = list2OnePlacePred [F]
 dagger   = list2OnePlacePred [X]
--- ADDED STUDENT
-student = [S]
 
 -- Predicates defined from earlier predicates
 child, person, man, woman, male, female, thing :: OnePlacePred
@@ -86,17 +97,17 @@ laugh   = list2OnePlacePred [A,G,E]
 cheer   = list2OnePlacePred [M,D]
 shudder = list2OnePlacePred [S]
 
--- SHOULD I GET RID OF THIS
+-- *** CLUE: Added definitions of killer, crimescene, and weapon
 killer = list2OnePlacePred [K]
-crimescene = list2OnePlacePred [C]
+crimescene = list2OnePlacePred [S]
 weapon = list2OnePlacePred [W] 
 
+-- *** CLUE: Added is
 -- Sample two place predicates representing transitive verbs
-love, admire, help, defeat :: TwoPlacePred
+love, admire, help, defeat, is :: TwoPlacePred
 -- characteristic functions for binary relations for transitive verbs
 love   = curry (`elem` [(Y,E),(B,S),(R,S)])
-is = curry (`elem` [(K,K),(W,W),(C,C)]) 
---kill   = curry (`elem` [(K,S)])
+is = curry (`elem` [(x,x) | x <- entities]) 
 admire = curry (`elem` [(x,G) | x <- entities, person x])
 help   = curry (`elem` [(W,W),(V,V),(S,B),(D,M)])
 defeat = curry (`elem` [(x,y) | x <- entities, 
