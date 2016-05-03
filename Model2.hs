@@ -1,35 +1,42 @@
+--Melissa Grueter
+--Gloria Liou
+
 module Model2 where 
 -- An alternative model for chapter 6
 import Data.List
 import Model
 
-snowWhite' :: Entity
---, bruce, chen, greenberg, kauchak, wu, cs52, cs62, cs81, systems, algs , killer, weapon, crimescene
+-- NOTE: Where our code is mixed in with code from the text, we have annotated
+-- our additions as in the example below, to make it easier to distinguish.
+-- *** CLUE: Added ...
+
+-- *** CLUE: Added definitions of profs', courses', and locations'
+snowWhite', bruce', chen', greenberg', kauchak', wu', cs52', cs62', cs81',
+            systems', algs' :: Entity
+
 snowWhite' = T
 
---NOT CURRENTLY IN USE BUT WE SHOULD PROBABLY DO IT THIS WAY DON'T DELETE
+--Definitions of profs (in worlds where they are the killer, K)
 bruce' = K
 chen' = K
 greenberg' = K 
 kauchak' = K
 wu' = K
 
+--Definitions of courses (in worlds where they are the weapon, W)
 cs52' = W
 cs62' = W
 cs81' = W
 systems' = W
 algs' = W
 
-edmunds' = C
-lincoln' = C
-skyspace' = C
-frary' = C
-frank' = C
+--Definitions of locations (in worlds where they are the scene of the crime, S)
+edmunds' = S
+lincoln' = S
+skyspace' = S
+frary' = S
+frank' = S
 
---We should come back to these and see if we want to assign entities differently 
---killer = K
---weapon = W
---crimescene = S
 
 girl', boy', princess', dwarf', giant', 
   child', person', man', woman', thing':: OnePlacePred
@@ -50,9 +57,3 @@ laugh', cheer', shudder' :: OnePlacePred
 laugh'   = list2OnePlacePred [A,G,E,T]
 cheer'   = list2OnePlacePred [M,D]
 shudder' = list2OnePlacePred []
-
-
---killer = list2OnePlacePred [K]
---crimescene = list2OnePlacePred [C]
---weapon = list2OnePlacePred [W] 
-
