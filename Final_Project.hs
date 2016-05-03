@@ -12,7 +12,7 @@ import Model
 import Model2
 import TCOM
 
---evaluate guesses using intensional worlds
+--evaluate guesses by interpreting accusations in the correct intensional world 
 evalGuess :: [Char] -> World -> Bool
 evalGuess "Bruce" world = iSent (Sent Bruce (VP1 Is (NP1 The Killer))) world
 evalGuess "Chen" world = iSent (Sent Chen (VP1 Is (NP1 The Killer))) world
@@ -44,8 +44,17 @@ thinWorldsCorrect guess [] = []
 thinWorldsCorrect guess (w:ws) =
                   if evalGuess guess w
                      then (w:(thinWorldsCorrect guess ws))
-                  else thinWorldsCorrect guess ws 
-            
+                  else thinWorldsCorrect guess ws
+
+--eliminate a world in case of incorrect guess of prof, course, and loc together
+thinWorldsGuess3 p c l [] = []
+thinWorldsGuess3 p c l (w:ws) =
+                 if evalGuess p w
+                 && evalGuess c w
+                 && evalGuess l w
+                    then ws
+                 else (w:(thinWorldsGuess3 p c l ws ))
+                                 
 --background story for the game
 storyLine :: IO ()
 storyLine = do
@@ -105,7 +114,7 @@ storyLine = do
    s <- getLine
    
    putStrLn ("Time is limited, students are in danger...")
-   putStrLn ("A professor is on the loose!")
+   putStrLn ("A murderous professor is on the loose!")
    s <- getLine
    putStrLn ("Are you ready to save Pomona's CS department?")
 
@@ -209,7 +218,7 @@ guess c w current best = do
    else if (length w == 1) --only one possible world left
       then
          do putStrLn ("It's too late...you didn't save the department in time.")
-            continueGame c w current best
+            continueGame c (thinWorldsGuess3 x y z w) current best
    else
       do putStrLn ("Not quite...\n") --CHANGE THIS
          guessProfessor c w current best
