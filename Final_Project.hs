@@ -1,4 +1,3 @@
-
 --Melissa Grueter
 --Gloria Liou
 
@@ -128,6 +127,7 @@ prompt c w current best = do
 --guess professor
 guessProfessor :: World -> [World] -> Int -> Int -> IO ()
 guessProfessor c w current best = do
+   --UNCOMMENT TO TEST: print w
    putStrLn ("Who killed the student?\nEnter 'Bruce', 'Chen', 'Greenberg', 'Kauchak', or 'Wu':")
    s <- getLine
    if s /= "Bruce" && s /= "Chen" && s /= "Greenberg" && s /= "Kauchak" && s /= "Wu"
@@ -145,6 +145,7 @@ guessProfessor c w current best = do
 --guess weapon
 guessWeapon :: World -> [World] -> Int -> Int -> IO ()
 guessWeapon c w current best = do
+   --UNCOMMENT TO TEST: print w
    putStrLn "Which class did (s)he use?\nEnter 'CS52', 'CS62', 'CS81', 'Systems', or 'Algs':"
    s <- getLine
    if s /= "CS52" && s /= "CS62" && s /= "CS81" && s /= "Systems" && s /= "Algs"
@@ -162,6 +163,7 @@ guessWeapon c w current best = do
 --guess location
 guessLocation :: World -> [World] -> Int -> Int -> IO ()
 guessLocation c w current best = do
+   --UNCOMMENT TO TEST: print w
    putStrLn "Where did (s)he kill the student?\nEnter 'Edmunds', 'Lincoln', 'Skyspace', 'Frary', or 'Frank':"
    s <- getLine
    if s /= "Edmunds" && s /= "Lincoln" && s /= "Skyspace" && s /= "Frary" && s /= "Frank"
@@ -199,6 +201,7 @@ wordsWhen p s =  case dropWhile p s of
 --make complete guess
 guess :: World -> [World] -> Int -> Int -> IO ()
 guess c w current best = do
+   --UNCOMMENT TO TEST: print w
    putStrLn "Who killed the student, what did (s)he use, and where did it happen?"
    putStrLn "Format: professor,class,location (no spaces)"
    s <- getLine
@@ -218,10 +221,10 @@ guess c w current best = do
    else if (length w == 1) --only one possible world left
       then
          do putStrLn ("It's too late...you didn't save the department in time.")
-            continueGame c (thinWorldsGuess3 x y z w) current best
+            continueGame c w current best
    else
-      do putStrLn ("Not quite...\n") --CHANGE THIS
-         guessProfessor c w current best
+      do putStrLn ("Not quite...\n") 
+         guessProfessor c (thinWorldsGuess3 x y z w) current best
 
 --present current score and best score
 score :: World -> [World] -> Int -> Int -> IO ()
@@ -244,6 +247,9 @@ continueGame c w current best = do
       then 
          do x <- getStdRandom (randomR (1, 125)) :: IO Int
             let correct = genCorrectWorld x
+            --UNCOMMENT TO TEST: wputStrLn "\nCorrect World:"  
+            --UNCOMMENT TO TEST: print correct
+            --UNCOMMENT TO TEST: putStrLn "\n"
             prompt correct w current best
    else
       do putStrLn ("Thank you for playing!")
@@ -252,4 +258,7 @@ main = do
    storyLine
    x <- getStdRandom (randomR (1, 125)) :: IO Int
    let correct = genCorrectWorld x
+   --UNCOMMENT TO TEST: putStrLn "\nCorrect World:"  
+   --UNCOMMENT TO TEST: print correct
+   --UNCOMMENT TO TEST: putStrLn "\n"
    prompt correct worlds 0 125
