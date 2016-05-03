@@ -1,8 +1,13 @@
+-- Melissa Grueter
+-- Gloria Liou
+
 module TCOM where 
 
 import Data.List
 import FSynF
 import Model
+
+-- *** CLUE: NO CHANGES TO THIS FILE
 
 -- Interpretations of quantifiers using size of A-B and A^B
 allNum, noNum :: Int -> Int -> Bool
@@ -79,11 +84,6 @@ intCN Giant    = \ x -> giant x
 intCN Wizard   = \ x -> wizard x 
 intCN Sword    = \ x -> sword x
 intCN Dagger   = \ x -> dagger x
-
---ADDED
-intCN Killer     = \ x -> killer x
-intCN Weapon     = \ x -> weapon x
-intCN Crimescene = \ x -> crimescene x
 
 -- Interpret determiners in the form D A B
 intDET :: DET -> 
