@@ -1,6 +1,12 @@
-module FSynF where
+--Melissa Grueter
+--Gloria Liou
 
+module FSynF where
 import Data.List
+
+-- NOTE: Where our code is mixed in with code from the text, we have annotated
+-- our additions as in the example below, to make it easier to distinguish.
+-- *** CLUE: Added ...
 
 -- Code for section 4.1
 data Column = A' | B' | C' | D' | E' 
@@ -28,8 +34,10 @@ type Feedback = [Answer]
 
 -- Code for section 4.2
 
--- Data types for different parts of speech *** ADDED FOR CLUE ***
+-- Data types for different parts of speech
 data Sent = Sent NP VP deriving Show
+
+-- *** CLUE: Added professors, courses, and locations
 data NP   = SnowWhite  | Alice  | Dorothy  | Goldilocks 
           | LittleMook | Atreyu | Everyone | Someone 
           | Bruce      | Chen   | Greenberg| Kauchak 
@@ -39,8 +47,11 @@ data NP   = SnowWhite  | Alice  | Dorothy  | Goldilocks
           deriving Show
 data DET  = The | Every | Some | No | Most
           deriving Show
+
+-- *** CLUE: Added Killer, Weapon, and Crimescene
 data CN   = Girl   | Boy   | Princess | Dwarf | Giant 
-          | Wizard | Sword | Dagger | Killer | Weapon | Crimescene deriving Show -- ADDED KILLER
+          | Wizard | Sword | Dagger | Killer | Weapon | Crimescene deriving Show
+          
 data ADJ  = Fake deriving Show
 data RCN  = RCN1 CN That VP | RCN2 CN That NP TV
           | RCN3 ADJ CN
@@ -49,7 +60,9 @@ data That = That deriving Show
 data VP   = Laughed | Cheered | Shuddered 
           | VP1 TV NP | VP2 DV NP NP
           | VP3 AV To INF -- | VP4 TV NP In NP
-          deriving Show 
+          deriving Show
+
+-- *** CLUE: Added Is
 data TV   = Loved   | Admired | Helped 
           | Defeated | Caught | Is
           deriving Show 
@@ -60,7 +73,6 @@ data INF  = Laugh | Sheer | Shudder | INF TINF NP deriving Show
 data TINF = Love | Admire | Help | Defeat | Catch 
             deriving Show 
 data To   = To deriving Show
---data In   = In deriving Show
 
 -- Section 4.4
 -- Formulas of propositional logic
